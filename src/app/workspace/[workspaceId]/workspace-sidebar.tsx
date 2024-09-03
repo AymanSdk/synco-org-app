@@ -3,6 +3,7 @@ import { AlertTriangle, Loader } from "lucide-react";
 import { useCurrentMember } from "@/features/members/api/use-current-member";
 import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
 import { useWorkspaceId } from "@/hooks/use-workspace-id";
+import { WorkspaceHeader } from "./workspace-header";
 
 export const WorkspaceSidebar = () => {
   const workspaceId = useWorkspaceId();
@@ -33,7 +34,10 @@ export const WorkspaceSidebar = () => {
 
   return (
     <div className="flex flex-col bg-[#5E2C5F] h-full">
-      <WorkspaceHeader />
+      <WorkspaceHeader
+        workspace={workspace}
+        isAdmin={member.role === "admin"}
+      />
     </div>
   );
 };
