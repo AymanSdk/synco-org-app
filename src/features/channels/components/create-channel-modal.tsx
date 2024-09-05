@@ -11,8 +11,12 @@ import {
 import { useCreateChannelModal } from "../store/use-create-channel-modal";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useCreateChannel } from "../api/use-create-channel";
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
 
 export const CreateChannelModal = () => {
+  const workspaceId = useWorkspaceId();
+  const { mutate, isPending } = useCreateChannel();
   const [open, setOpen] = useCreateChannelModal();
   const [name, setName] = useState("");
 
@@ -26,16 +30,29 @@ export const CreateChannelModal = () => {
     setName(value);
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    mutate(
+      { name, workspaceId },
+      {
+        onSuccess: () => {
+          // TODO: redirect to the new channel
+          handleClose();
+        },
+      }
+    );
+  };
+
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>New channel</DialogTitle>
         </DialogHeader>
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             value={name}
-            disabled={false}
+            disabled={isPending}
             onChange={handleChange}
             required
             autoFocus
@@ -44,7 +61,7 @@ export const CreateChannelModal = () => {
             placeholder="e.g. dev-talk"
           />
           <div className="flex justify-end">
-            <Button disabled={false} className="bg-[#5C3B58]">
+            <Button disabled={isPending} className="bg-[#5C3B58]">
               Create
             </Button>
           </div>
