@@ -10,7 +10,7 @@ const generateCode = () => {
 
   return code;
 };
-
+// join workspace by code
 export const join = mutation({
   args: {
     joinCode: v.string(),
@@ -53,7 +53,7 @@ export const join = mutation({
     return workspace._id;
   },
 });
-
+// generate new join code
 export const newJoinCode = mutation({
   args: {
     workspaceId: v.id("workspaces"),
@@ -85,7 +85,7 @@ export const newJoinCode = mutation({
     return args.workspaceId;
   },
 });
-
+// create new workspace
 export const create = mutation({
   args: {
     name: v.string(),
@@ -119,7 +119,7 @@ export const create = mutation({
     return workspaceId;
   },
 });
-
+// get all workspaces of the user
 export const get = query({
   args: {},
   handler: async (ctx) => {
@@ -149,9 +149,32 @@ export const get = query({
     return workspaces;
   },
 });
+// get information about workspace by id even if user is not a member
+export const getInfoById = query({
+  args: { id: v.id("workspaces") },
+  handler: async (ctx, args) => {
+    const userId = await auth.getUserId(ctx);
 
+    if (!userId) {
+      return null;
+    }
+
+    const member = await ctx.db
+      .query("members")
+      .withIndex("by_workspace_id_user_id", (q) =>
+        q.eq("workspaceId", args.id).eq("userId", userId)
+      )
+      .unique();
+
+    const workspace = await ctx.db.get(args.id);
+
+    return {
+      name: workspace?.name,
+      isMember: !!member,
+    };
+  },
+});
 // only workspace members can get workspace by id
-
 export const getById = query({
   args: { id: v.id("workspaces") },
   handler: async (ctx, args) => {
