@@ -12,11 +12,21 @@ interface ChatInputProps {
 export const ChatInput = ({ placeholder }: ChatInputProps) => {
   const editorRef = useRef<Quill | null>(null);
 
+  const handleSumbit = ({
+    body,
+    image,
+  }: {
+    body: string;
+    image: File | null;
+  }) => {
+    console.log({ body, image });
+  };
+
   return (
     <div className="px-5 w-full">
       <Editor
         placeholder={placeholder}
-        onSubmit={() => {}}
+        onSubmit={handleSumbit}
         disabled={false}
         innerRef={editorRef}
       />
