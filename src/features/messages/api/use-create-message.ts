@@ -9,7 +9,7 @@ type RequestType = {
   image?: Id<"_storage">;
   channelId?: Id<"channels">;
   parentMessageId?: Id<"messages">;
-  //   TODO: Add conversationId
+  conversationId?: Id<"conversations">;
 };
 type ResponseType = Id<"messages"> | null;
 
