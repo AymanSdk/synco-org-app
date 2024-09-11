@@ -1,4 +1,4 @@
-// ! Nextjs Dummy import to avoid SSR
+// ! Nextjs Dynamic import to avoid SSR
 import dynamic from "next/dynamic";
 // * Date Fns Functions and Types
 import { format, isToday, isYesterday } from "date-fns";
@@ -17,7 +17,8 @@ import { cn } from "@/lib/utils";
 import { Hint } from "./hint";
 import { Thumbnail } from "./thumbnail";
 import { Toolbar } from "./toolbar";
-
+import { Reactions } from "./reactions";
+// * Dynamic Imports from Quill and React-Quill
 const Renderer = dynamic(() => import("@/components/renderer"), { ssr: false });
 const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
 
@@ -165,7 +166,7 @@ export const Message = ({
                     (edited)
                   </span>
                 ) : null}
-                {JSON.stringify(reactions)}
+                <Reactions data={reactions} onChange={handleReaction} />
               </div>
             )}
           </div>
@@ -236,7 +237,7 @@ export const Message = ({
               {updatedAT ? (
                 <span className="text-xs text-muted-foreground">(edited)</span>
               ) : null}
-              {JSON.stringify(reactions)}
+              <Reactions data={reactions} onChange={handleReaction} />
             </div>
           )}
         </div>
