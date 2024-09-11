@@ -1,19 +1,22 @@
+// ! Nextjs Dummy import to avoid SSR
 import dynamic from "next/dynamic";
-
-import { Doc, Id } from "../../convex/_generated/dataModel";
+// * Date Fns Functions and Types
 import { format, isToday, isYesterday } from "date-fns";
-
+// * Data Models
+import { Doc, Id } from "../../convex/_generated/dataModel";
+// * Features and Hooks
 import { useUpdateMessage } from "@/features/messages/api/use-update-message";
 import { useRemoveMessage } from "@/features/messages/api/use-remove-message";
-
+import { useToggleReaction } from "@/features/reactions/api/use-toggle-reaction";
+import { useConfirm } from "@/hooks/use-confirm";
+// * Third Party UI Components
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "sonner";
-
+import { cn } from "@/lib/utils";
+// * Components
 import { Hint } from "./hint";
 import { Thumbnail } from "./thumbnail";
 import { Toolbar } from "./toolbar";
-import { cn } from "@/lib/utils";
-import { useConfirm } from "@/hooks/use-confirm";
 
 const Renderer = dynamic(() => import("@/components/renderer"), { ssr: false });
 const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
@@ -71,12 +74,25 @@ export const Message = ({
     "Are you sure you want to delete this message? This action cannot be undone."
   );
 
+  const { mutate: toggleReaction, isPending: isTogglingReaction } =
+    useToggleReaction();
   const { mutate: updateMessage, isPending: isUpdatingMessage } =
     useUpdateMessage();
   const { mutate: removeMessage, isPending: isRemovingMessage } =
     useRemoveMessage();
 
   const isPending = isUpdatingMessage;
+
+  const handleReaction = (value: string) => {
+    toggleReaction(
+      { messageId: id, value },
+      {
+        onError: () => {
+          toast.error("Failed to add reaction");
+        },
+      }
+    );
+  };
 
   const handleRemove = async () => {
     const ok = await confirm();
@@ -149,6 +165,7 @@ export const Message = ({
                     (edited)
                   </span>
                 ) : null}
+                {JSON.stringify(reactions)}
               </div>
             )}
           </div>
@@ -159,7 +176,7 @@ export const Message = ({
               handleEdit={() => setEditingId(id)}
               handleThread={() => {}}
               handleDelete={handleRemove}
-              handleReaction={() => {}}
+              handleReaction={handleReaction}
               hideThreadButton={hideThreadButton}
             />
           )}
@@ -219,6 +236,7 @@ export const Message = ({
               {updatedAT ? (
                 <span className="text-xs text-muted-foreground">(edited)</span>
               ) : null}
+              {JSON.stringify(reactions)}
             </div>
           )}
         </div>
@@ -229,7 +247,7 @@ export const Message = ({
             handleEdit={() => setEditingId(id)}
             handleThread={() => {}}
             handleDelete={handleRemove}
-            handleReaction={() => {}}
+            handleReaction={handleReaction}
             hideThreadButton={hideThreadButton}
           />
         )}
