@@ -2,7 +2,7 @@ import { format } from "date-fns";
 
 interface ChannelHeroProps {
   name: string;
-  creationTime: string; // ! check if this give an error change type to number
+  creationTime: string; // TODO: ! check if this give an error change type to number
 }
 
 export const ChannelHero = ({ name, creationTime }: ChannelHeroProps) => {
