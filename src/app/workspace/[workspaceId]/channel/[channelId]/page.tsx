@@ -41,7 +41,7 @@ const ChnnelIdPage = () => {
       <Header title={channel.name} />
       <MessageList
         channelName={channel.name}
-        channelCreationTime={channel._creationTime}
+        channelCreationTime={channel._creationTime.toString()}
         data={results}
         loadMore={loadMore}
         isLoadingMore={status === "LoadingMore"}
