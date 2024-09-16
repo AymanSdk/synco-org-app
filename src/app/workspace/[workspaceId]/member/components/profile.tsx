@@ -11,6 +11,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+} from "@/components/ui/dropdown-menu";
 
 import { useGetMember } from "@/features/members/api/use-get-member";
 import { useUpdateMember } from "@/features/members/api/use-update-member";
@@ -176,9 +183,28 @@ export const Profile = ({ memberId, onClose }: ProfileProps) => {
           <p className="text-xl font-bold">{member.user.name}</p>
           {currentMember?.role === "admin" && currentMember._id !== memberId ? (
             <div className="flex items-center gap-2 mt-4">
-              <Button variant="outline" className="w-full capitalize">
-                {member.role} <ChevronDownIcon className="size-4 ml-2" />
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="w-full capitalize">
+                    {member.role} <ChevronDownIcon className="size-4 ml-2" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-full">
+                  <DropdownMenuRadioGroup
+                    value={member.role}
+                    onValueChange={(role) =>
+                      onUpdate(role as "admin" | "member")
+                    }
+                  >
+                    <DropdownMenuRadioItem value="admin">
+                      Admin
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="member">
+                      Member
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Button onClick={onRemove} variant="outline" className="w-full">
                 Remove
               </Button>
