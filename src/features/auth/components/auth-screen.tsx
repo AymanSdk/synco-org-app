@@ -55,6 +55,7 @@ export const AuthScreen = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
         >
+          {/* TODO : Add Banner image here */}
           <div className="relative w-full h-full">
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a2a43] via-[#1a2a43]/80 to-transparent" />
           </div>

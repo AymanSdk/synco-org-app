@@ -56,7 +56,7 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
       <CardHeader className="space-y-1 px-0">
         <CardTitle className="text-3xl font-bold">Welcome back</CardTitle>
         <CardDescription>
-          Enter your email to sign in to your account
+          Enter your email and password to sign in to your account
         </CardDescription>
       </CardHeader>
       {!!error && (
