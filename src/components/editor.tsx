@@ -243,7 +243,7 @@ const Editor = ({
                     image,
                   });
                 }}
-                className="bg-[#5C3B58] hover:bg-[#5C3B58]/80 text-white"
+                className="bg-[#3E5879] hover:bg-[#3E5879]/80 text-white"
               >
                 Save
               </Button>
@@ -263,7 +263,7 @@ const Editor = ({
                 "ml-auto",
                 isEmpty
                   ? "bg-white hover:bg-white text-muted-foreground"
-                  : "bg-[#5C3B58] hover:bg-[#5C3B58]/80 text-white"
+                  : "bg-[#3E5879] hover:bg-[#3E5879]/80 text-white"
               )}
             >
               <MdSend className="size-4" />

@@ -84,7 +84,12 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
             type="password"
             required
           />
-          <Button type="submit" className="w-full" size="lg" disabled={pending}>
+          <Button
+            type="submit"
+            className="w-full bg-[#3E5879] hover:bg-[#213555]"
+            size="lg"
+            disabled={pending}
+          >
             Continue
           </Button>
         </form>

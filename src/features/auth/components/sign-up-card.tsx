@@ -103,7 +103,12 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
             type="password"
             required
           />
-          <Button type="submit" className="w-full" size="lg" disabled={pending}>
+          <Button
+            type="submit"
+            className="w-full bg-[#3E5879]"
+            size="lg"
+            disabled={pending}
+          >
             Continue
           </Button>
         </form>

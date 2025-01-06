@@ -152,7 +152,7 @@ export const Header = ({ title }: HeaderProps) => {
                     </DialogClose>
                     <Button
                       disabled={IsupdatingChannel}
-                      className="bg-[#5C3B58]"
+                      className="bg-[#3E5879]"
                     >
                       Save
                     </Button>
