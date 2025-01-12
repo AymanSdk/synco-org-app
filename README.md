@@ -1,6 +1,6 @@
 # Syncro Org
 
-![AppBanner](./public/SyncroAppBanner.png)
+
 
 <!-- Used Tech -->
 
@@ -12,8 +12,7 @@
 
 ## Screenshots
 
-![Screenshot#1](./public/Screenshot1.png)
-![Screenshot#2](./public/Screenshot2.png)
+
 
 ## Features
 
