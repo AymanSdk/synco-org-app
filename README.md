@@ -12,9 +12,6 @@
 
 ## Screenshots
 
-![Screenshot#1](./public/Screenshot1.png)
-![Screenshot#2](./public/Screenshot2.png)
-
 ## Features
 
 - **Workspace Creation**: Users can create multiple workspaces for organizing teams or projects.
