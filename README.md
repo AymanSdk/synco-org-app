@@ -1,6 +1,6 @@
 # Syncro Org
 
-![AppBanner](./public/SyncroAppBanner.png)
+
 
 <!-- Used Tech -->
 
@@ -12,6 +12,11 @@
 
 ## Screenshots
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ea1c251386fc54e632db7c7304c4816953b110f5
 ## Features
 
 - **Workspace Creation**: Users can create multiple workspaces for organizing teams or projects.
