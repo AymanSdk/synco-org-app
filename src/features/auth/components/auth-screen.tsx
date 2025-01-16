@@ -6,6 +6,8 @@ import Image from "next/image";
 import { SignInCard } from "./sign-in-card";
 import { SignUpCard } from "./sign-up-card";
 import { SignInFlow } from "../types";
+import { Background3D } from "@/components/animated-shapes";
+import Link from "next/link";
 
 export const AuthScreen = () => {
   const [state, setState] = useState<SignInFlow>("SignIn");
@@ -13,11 +15,14 @@ export const AuthScreen = () => {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       <div className="fixed top-6 left-6 z-10 flex items-center gap-2 text-white md:text-primary">
-        <Image src="/logo.svg" alt="logo" width={32} height={32} />
-        <span className="text-2xl font-bold text-white">Syncro</span>
+        <Link href="/home">
+          <Image src="/logo.svg" alt="logo" width={32} height={32} />
+          {/* <span className="text-2xl font-bold text-white">Syncro</span> */}
+        </Link>
       </div>
 
       <div className="w-full md:w-1/2 bg-gradient-to-br from-[#1a2a43] via-[#3E5879] to-[#213555] flex flex-col items-start justify-center p-6 md:p-12 relative overflow-hidden">
+        <Background3D />
         <div className="z-10">
           <motion.h1
             className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
@@ -45,21 +50,10 @@ export const AuthScreen = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Transform your workflow with our powerful collaboration platform.
-            Connect, create, and collaborate in real-time.
+            Sign in to transform your workflow with our powerful collaboration
+            platform. Connect, create, and collaborate in real-time.
           </motion.p>
         </div>
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 h-64 md:h-96"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4 }}
-        >
-          {/* TODO : Add Banner image here */}
-          <div className="relative w-full h-full">
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1a2a43] via-[#1a2a43]/80 to-transparent" />
-          </div>
-        </motion.div>
       </div>
 
       <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12 bg-background">

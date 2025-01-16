@@ -10,6 +10,7 @@ import { useChannelId } from "@/hooks/use-channel-id";
 import { Header } from "./header";
 import { ChatInput } from "./chat-input";
 import { MessageList } from "@/components/message-list";
+import { Button } from "@/components/ui/button";
 
 const ChnnelIdPage = () => {
   const channelId = useChannelId();
@@ -32,6 +33,11 @@ const ChnnelIdPage = () => {
       <div className="h-full flex-1 flex flex-col items-center justify-center gap-y-2">
         <TriangleAlert className="size-5 text-muted-foreground" />
         <span className="text-sm text-muted-foreground">Channel not found</span>
+        <div className="mt-4 items-center">
+          <Button size="sm" className="bg-[#3E5879]">
+            Go back
+          </Button>
+        </div>
       </div>
     );
   }

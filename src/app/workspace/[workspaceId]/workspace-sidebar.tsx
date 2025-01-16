@@ -21,6 +21,7 @@ import { SidebarItem } from "./sidebar-item";
 import { WorkspaceHeader } from "./workspace-header";
 import { WorkspaceSection } from "./workspace-section";
 import { useMemberId } from "@/hooks/use-member-id";
+import { Button } from "@/components/ui/button";
 
 export const WorkspaceSidebar = () => {
   const memberId = useMemberId();
@@ -55,6 +56,14 @@ export const WorkspaceSidebar = () => {
       <div className="flex flex-col gap-y-2 bg-[#3E5879] h-full items-center justify-center">
         <AlertTriangle className="size-5 text-white" />
         <p className="text-white text-sm">Workspace not found</p>
+        <div className="flex gap-x-2 justify-between items-center">
+          <Button variant="default" size="sm">
+            Create workspace
+          </Button>
+          <Button variant="secondary" size="sm">
+            Go Back
+          </Button>
+        </div>
       </div>
     );
   }
