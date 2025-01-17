@@ -27,7 +27,7 @@ const ChnnelIdPage = () => {
       </div>
     );
   }
-
+  // TODO: @chaimae workspace modal check if none exist
   if (!channel) {
     return (
       <div className="h-full flex-1 flex flex-col items-center justify-center gap-y-2">

@@ -50,6 +50,7 @@ export const WorkspaceSidebar = () => {
       </div>
     );
   }
+  // TODO: @chaimae workspace modal check if none exist
   // check if workspace or member is not found and show an error message
   if (!workspace || !member) {
     return (
