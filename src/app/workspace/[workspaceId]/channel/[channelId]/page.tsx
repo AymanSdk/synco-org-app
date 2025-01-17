@@ -12,6 +12,7 @@ import { ChatInput } from "./chat-input";
 import { MessageList } from "@/components/message-list";
 import { Button } from "@/components/ui/button";
 
+// TODO: fix Typo in component name
 const ChnnelIdPage = () => {
   const channelId = useChannelId();
 
