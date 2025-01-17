@@ -11,7 +11,7 @@ import { Header } from "./header";
 import { ChatInput } from "./chat-input";
 import { MessageList } from "@/components/message-list";
 import { Button } from "@/components/ui/button";
-
+// todo : typo here to be fixed
 const ChnnelIdPage = () => {
   const channelId = useChannelId();
 
