@@ -1,12 +1,13 @@
 # Syncro Org
 
 <!-- Used Tech -->
-
 <p align="center">
   <img src="https://skillicons.dev/icons?i=nextjs,react,ts,vercel,nodejs" alt="Tech Stack" />
-  </p>
+</p>
 
-**Syncro Org** is a lightweight, simplified application for team communication. It allows users to create and manage workspaces, organize channels within them, and easily manage members. With support for OAuth integration via GitHub and Google, Syncro Org, provides a smooth and secure user experience.
+**Syncro Org** is a lightweight, simplified application for team communication. It allows users to create and manage workspaces, organize channels within them, and easily manage members. With support for OAuth integration via GitHub and Google, Syncro Org provides a smooth and secure user experience.
+
+## Screenshots
 
 ## Features
 
@@ -33,10 +34,10 @@
 
 2. **Install dependencies:**
 
-   Ensure you have [Node.js](https://nodejs.org/) installed, then run:
+   Ensure you have [Bun](https://bun.sh/) installed, then run:
 
    ```bash
-   npm install
+   bun install
    ```
 
 3. **Set up environment variables:**
@@ -48,7 +49,7 @@
    NEXT_PUBLIC_GITHUB_CLIENT_SECRET=your_github_client_secret
    NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
    NEXT_PUBLIC_GOOGLE_CLIENT_SECRET=your_google_client_secret
-   CONVEX_URL=your_convex_url
+   NEXT_PUBLIC_CONVEX_URL=your_convex_url
    ```
 
 4. **Run the development server:**
@@ -56,7 +57,7 @@
    Start the server locally:
 
    ```bash
-   npm run dev
+   bun dev
    ```
 
    Open [http://localhost:3000](http://localhost:3000) to view the app in the browser.
@@ -83,7 +84,7 @@ Syncro Org uses [Convex](https://convex.dev/) to manage real-time data. Set up C
 1. Install the Convex CLI:
 
    ```bash
-   npm install -g convex
+   bun add -g convex
    ```
 
 2. Initialize Convex within the project:
@@ -102,7 +103,7 @@ Syncro Org uses [Convex](https://convex.dev/) to manage real-time data. Set up C
 
 ## Deployment
 
-You can deploy Syncro Org using platforms such as Vercel or Netlify. For Deploymentent on Vercel:
+You can deploy Syncro Org using platforms such as Vercel or Netlify. For deployment on Vercel:
 
 1. Push your repository to GitHub or another Git provider.
 2. Connect your repository to Vercel.
@@ -122,4 +123,3 @@ We welcome contributions to Syncro Org! If you want to contribute:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-#heh
