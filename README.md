@@ -10,13 +10,6 @@
 
 **Syncro Org** is a lightweight, simplified application for team communication. It allows users to create and manage workspaces, organize channels within them, and easily manage members. With support for OAuth integration via GitHub and Google, Syncro Org, provides a smooth and secure user experience.
 
-## Screenshots
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> ea1c251386fc54e632db7c7304c4816953b110f5
 ## Features
 
 - **Workspace Creation**: Users can create multiple workspaces for organizing teams or projects.
@@ -111,7 +104,7 @@ Syncro Org uses [Convex](https://convex.dev/) to manage real-time data. Set up C
 
 ## Deployment
 
-You can deploy Syncro Org using platforms such as Vercel or Netlify. For deployment on Vercel:
+You can deploy Syncro Org using platforms such as Vercel or Netlify. For Deploymentent on Vercel:
 
 1. Push your repository to GitHub or another Git provider.
 2. Connect your repository to Vercel.
