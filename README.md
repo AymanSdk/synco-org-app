@@ -1,7 +1,5 @@
 # Syncro Org
 
-
-
 <!-- Used Tech -->
 
 <p align="center">
