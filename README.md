@@ -1,22 +1,12 @@
 # Syncro Org
 
-
-
 <!-- Used Tech -->
-
 <p align="center">
   <img src="https://skillicons.dev/icons?i=nextjs,react,ts,vercel,nodejs" alt="Tech Stack" />
-  </p>
+</p>
 
-**Syncro Org** is a lightweight, simplified application for team communication. It allows users to create and manage workspaces, organize channels within them, and easily manage members. With support for OAuth integration via GitHub and Google, Syncro Org, provides a smooth and secure user experience.
+**Syncro Org** is a lightweight, simplified application for team communication. It allows users to create and manage workspaces, organize channels within them, and easily manage members. With support for OAuth integration via GitHub and Google, Syncro Org provides a smooth and secure user experience.
 
-## Screenshots
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> ea1c251386fc54e632db7c7304c4816953b110f5
 ## Features
 
 - **Workspace Creation**: Users can create multiple workspaces for organizing teams or projects.
@@ -42,10 +32,10 @@
 
 2. **Install dependencies:**
 
-   Ensure you have [Node.js](https://nodejs.org/) installed, then run:
+   Ensure you have [Bun](https://bun.sh/) installed, then run:
 
    ```bash
-   npm install
+   bun install
    ```
 
 3. **Set up environment variables:**
@@ -57,7 +47,7 @@
    NEXT_PUBLIC_GITHUB_CLIENT_SECRET=your_github_client_secret
    NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
    NEXT_PUBLIC_GOOGLE_CLIENT_SECRET=your_google_client_secret
-   CONVEX_URL=your_convex_url
+   NEXT_PUBLIC_CONVEX_URL=your_convex_url
    ```
 
 4. **Run the development server:**
@@ -65,7 +55,7 @@
    Start the server locally:
 
    ```bash
-   npm run dev
+   bun dev
    ```
 
    Open [http://localhost:3000](http://localhost:3000) to view the app in the browser.
@@ -92,7 +82,7 @@ Syncro Org uses [Convex](https://convex.dev/) to manage real-time data. Set up C
 1. Install the Convex CLI:
 
    ```bash
-   npm install -g convex
+   bun add -g convex
    ```
 
 2. Initialize Convex within the project:
