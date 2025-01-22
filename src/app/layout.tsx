@@ -45,7 +45,6 @@ export default function RootLayout({
                 {children}
               </JotaiProvider>
             </ConvexClientProvider>
-            <Footer />
           </ThemeProvider>
         </body>
       </html>

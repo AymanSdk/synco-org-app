@@ -15,6 +15,7 @@ import { Loader } from "lucide-react";
 import { Id } from "../../../../convex/_generated/dataModel";
 import { Thread } from "@/features/messages/components/thread";
 import { Profile } from "./member/components/profile";
+import Footer from "@/components/Footer";
 
 interface WorkspaceIdLayoutProps {
   children: React.ReactNode;
@@ -69,6 +70,7 @@ const WorkspaceIdLayout = ({ children }: WorkspaceIdLayoutProps) => {
           )}
         </ResizablePanelGroup>
       </div>
+      <Footer />
     </div>
   );
 };
