@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/ModeToggle";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -82,9 +83,7 @@ export const Toolbar = () => {
         </CommandDialog>
       </div>
       <div className="ml-auto flex-1 flex items-center justify-end">
-        <Button variant="transparent" size="iconSm">
-          <Info className="size-5 text-white" />
-        </Button>
+        <ModeToggle />
       </div>
     </nav>
   );
