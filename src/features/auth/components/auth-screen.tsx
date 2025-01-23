@@ -15,7 +15,7 @@ export const AuthScreen = () => {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       <div className="fixed top-6 left-6 z-10 flex items-center gap-2 text-white md:text-primary">
-        <Link href="/home">
+        <Link href="/">
           <Image src="/logo.svg" alt="logo" width={32} height={32} />
           {/* <span className="text-2xl font-bold text-white">Syncro</span> */}
         </Link>
