@@ -1,11 +1,11 @@
 import { Hint } from "@/components/hint";
 import { Button } from "@/components/ui/button";
 
-import { useToggle } from "react-use";
 import { cn } from "@/lib/utils";
+import { useToggle } from "react-use";
 
 import { PlusIcon } from "lucide-react";
-import { FaCaretDown } from "react-icons/fa";
+import { FaCaretDown, FaCaretLeft, FaCaretRight } from "react-icons/fa";
 
 interface WorkspaceSectionProps {
   children: React.ReactNode;
@@ -30,8 +30,8 @@ export const WorkspaceSection = ({
           variant="transparent"
           className="p-0.5 text-sm text-[#f9edffcc] shrink-0 size-6"
         >
-          <FaCaretDown
-            className={cn("size-4 transition-transform", on && "-rotate-90")}
+          <FaCaretRight
+            className={cn("size-4 transition-transform", on && "rotate-90")}
           />
         </Button>
         <Button
