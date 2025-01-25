@@ -27,9 +27,9 @@ const WorkspaceIdLayout = ({ children }: WorkspaceIdLayoutProps) => {
   const showPanel = !!parentMessageId || !!profileMemberId;
 
   return (
-    <div className="h-full">
+    <div className="h-screen flex flex-col">
       <Toolbar />
-      <div className="flex h-[calc(100vh-40px)]">
+      <div className="flex flex-1">
         <Sidebar />
         <ResizablePanelGroup
           direction="horizontal"
