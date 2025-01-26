@@ -301,3 +301,35 @@ export const remove = mutation({
     return args.id;
   },
 });
+
+// convex/workspaces.ts
+/**
+ * @swagger
+ * /workspaces:
+ *   get:
+ *     summary: Get all workspaces for the authenticated user
+ *     tags: [Workspaces]
+ *     responses:
+ *       200:
+ *         description: List of workspaces
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Workspace'
+ *
+ * components:
+ *   schemas:
+ *     Workspace:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *         name:
+ *           type: string
+ *         userId:
+ *           type: string
+ *         joinCode:
+ *           type: string
+ */

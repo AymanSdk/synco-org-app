@@ -10,6 +10,7 @@ import {
   MoreHorizontal,
   Presentation,
   Settings,
+  BookOpen,
 } from "lucide-react";
 
 import { usePathname } from "next/navigation";
@@ -17,6 +18,8 @@ import { useRouter } from "next/router";
 
 import { Button } from "@/components/ui/button";
 import { useAuthActions } from "@convex-dev/auth/react";
+
+import Link from "next/link";
 
 export const Sidebar = () => {
   const pathname = usePathname();
@@ -33,6 +36,13 @@ export const Sidebar = () => {
       <SidebarButton icon={MessagesSquareIcon} label="Messages" />
       <SidebarButton icon={Calendar} label="Meeting" />
       <SidebarButton icon={BellIcon} label="Activity" />
+      <Link href="/api-docs">
+        <SidebarButton
+          icon={BookOpen}
+          label="API Docs"
+          isActive={pathname === "/api-docs"}
+        />
+      </Link>
       <SidebarButton icon={Settings} label="Settings" />
       <SidebarButton icon={MoreHorizontal} label="More" />
       <div className="flex flex-col items-center justify-center gap-y-1 mt-auto">

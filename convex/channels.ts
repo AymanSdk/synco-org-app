@@ -182,3 +182,39 @@ export const remove = mutation({
     return args.id;
   },
 });
+
+// convex/channels.ts
+/**
+ * @swagger
+ * /channels:
+ *   get:
+ *     summary: Get all channels in a workspace
+ *     tags: [Channels]
+ *     parameters:
+ *       - in: query
+ *         name: workspaceId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: List of channels
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Channel'
+ *
+ * components:
+ *   schemas:
+ *     Channel:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *         name:
+ *           type: string
+ *         workspaceId:
+ *           type: string
+ */
