@@ -1,10 +1,9 @@
-// authentication Actions
+import React, { useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useAuthActions } from "@convex-dev/auth/react";
-// Icons for the social login buttons
+import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
-// Lucid Icons
 import { TriangleAlert } from "lucide-react";
-// shadcn UI components imported from the UI components file
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -14,101 +13,120 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-// types
-import { SignInFlow } from "../types";
-// react hooks
-import React, { useState } from "react";
-import Image from "next/image";
+import { SignInFormInputs, SignInCardProps } from "../types";
 
-interface SignInCardProps {
-  setState: (state: SignInFlow) => void;
-}
-
-export const SignInCard = ({ setState }: SignInCardProps) => {
+export const SignInCard: React.FC<SignInCardProps> = ({ setState }) => {
   const { signIn } = useAuthActions();
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [pending, setPending] = useState(false);
-  // Handle Password Sign In
-  const onPasswordSignIn = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setPending(true);
-    signIn("password", { email, password, flow: "signIn" })
-      .catch(() => {
-        setError("Invalid email or password");
-      })
-      .finally(() => {
-        setPending(false);
-      });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<SignInFormInputs>();
+
+  const onSubmit: SubmitHandler<SignInFormInputs> = async ({ email, password }) => {
+    setErrorMessage(null);
+    try {
+      await signIn("password", { email, password, flow: "signIn" });
+    } catch {
+      setErrorMessage("Invalid email or password. Please try again.");
+    }
   };
 
-  const onProviderSignIn = (value: "github" | "google") => {
-    setPending(true);
-    signIn(value).finally(() => {
-      setPending(false);
-    });
+  const onProviderSignIn = async (provider: "github" | "google") => {
+    try {
+      await signIn(provider);
+    } catch {
+      setErrorMessage(`Failed to sign in with ${provider}. Please try again.`);
+    }
   };
 
   return (
-    <Card className="w-full border-none shadow-none">
-      <CardHeader className="space-y-1 px-0">
-        <CardTitle className="text-3xl font-bold">Welcome back</CardTitle>
-        <CardDescription>
+    <Card className="w-full border-none shadow-none max-w-md">
+      <CardHeader className="space-y-2 px-0">
+        <CardTitle className="text-3xl font-semibold text-center">Welcome Back</CardTitle>
+        <CardDescription className="text-sm text-center text-gray-500">
           Enter your email and password to sign in to your account
         </CardDescription>
       </CardHeader>
-      {!!error && (
-        <div className="bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6">
-          <TriangleAlert className="size-4" />
-          <p>{error}</p>
-        </div>
-      )}
-      <CardContent className="space-y-4 px-0">
-        <form onSubmit={onPasswordSignIn} className="space-y-2">
+
+      <CardContent className="space-y-6 px-0 py-4">
+        {/* Error Message */}
+        {errorMessage && (
+          <div className="flex items-center bg-destructive/15 p-3 rounded-md text-sm text-destructive space-x-2 mb-4">
+            <TriangleAlert className="w-5 h-5" />
+            <span>{errorMessage}</span>
+          </div>
+        )}
+
+        {/* Form */}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <Input
-            disabled={pending}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Please enter a valid email address",
+              },
+            })}
             placeholder="example@email.com"
             type="email"
-            required
+            aria-invalid={!!errors.email}
+            disabled={isSubmitting}
+            autoComplete="email"
+            className="w-full"
           />
+          {errors.email && (
+            <p className="text-sm text-red-500">{errors.email.message}</p>
+          )}
+
           <Input
-            disabled={pending}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters long",
+              },
+            })}
             placeholder="Password"
             type="password"
-            required
+            aria-invalid={!!errors.password}
+            disabled={isSubmitting}
+            autoComplete="current-password"
+            className="w-full"
           />
+          {errors.password && (
+            <p className="text-sm text-red-500">{errors.password.message}</p>
+          )}
+
           <Button
             type="submit"
-            className="w-full bg-[#3E5879] hover:bg-[#213555]"
+            className="w-full bg-sky-900 hover:bg-sky-950"
             size="lg"
-            disabled={pending}
+            disabled={isSubmitting}
           >
-            Sign In
+            {isSubmitting ? "Signing In..." : "Sign In"}
           </Button>
         </form>
 
-        <div className="relative">
+        <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t"></div>
           </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">
-              Continue with
-            </span>
+          <div className="relative flex justify-center text-xs uppercase text-gray-500">
+            <span className="bg-background px-2">Or continue with</span>
           </div>
         </div>
+
+        {/* Social Login */}
         <div className="grid grid-cols-2 gap-4">
           <Button
-            disabled={pending}
             onClick={() => onProviderSignIn("google")}
             variant="outline"
             size="lg"
+            disabled={isSubmitting}
+            className="flex items-center justify-center w-full"
           >
             <Image
               src="https://authjs.dev/img/providers/google.svg"
@@ -117,24 +135,25 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
               height={16}
               className="mr-2"
             />
-            {/* <FcGoogle className="size-5 absolute top-3 left-2.5" /> */}
             Google
           </Button>
           <Button
-            disabled={pending}
             onClick={() => onProviderSignIn("github")}
             variant="outline"
             size="lg"
+            disabled={isSubmitting}
+            className="flex items-center justify-center w-full"
           >
             <FaGithub className="mr-2 h-4 w-4" />
-            Github
+            GitHub
           </Button>
         </div>
-        <div className="text-center text-sm">
+
+        <div className="text-center text-sm mt-4 text-gray-600">
           Don&apos;t have an account?{" "}
           <button
             onClick={() => setState("SignUp")}
-            className="font-medium underline underline-offset-4 hover:text-blue-700 text-blue-400"
+            className="font-medium underline text-sky-600 hover:text-sky-700"
           >
             Sign Up
           </button>
