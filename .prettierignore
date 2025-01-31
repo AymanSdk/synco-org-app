@@ -1,0 +1,32 @@
+# Ignore artifacts:
+build
+coverage
+dist
+node_modules
+
+# Ignore specific files:
+.next
+.turbo
+.trunk
+.vercel
+.vscode
+.cache
+.git
+convex/_generated
+public/*
+.DS_Store
+
+# Ignore environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Ignore all files with a specific extension:
+*.log
+*.md
+*.lockb
+*.lock
+*.yaml
+*.yml

@@ -6,7 +6,9 @@
     "dev": "bun run next dev",
     "build": "bun run next build",
     "start": "bun run next start",
-    "lint": "bun run next lint"
+    "lint": "bun run next lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@auth/core": "^0.34.2",
@@ -28,6 +30,7 @@
     "@react-three/fiber": "^8.17.12",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-react": "^4.19.0",
+    "bun-plugin-tailwind": "^0.0.14",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
@@ -59,9 +62,15 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^8",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
+    "eslint": "^9.19.0",
     "eslint-config-next": "14.2.7",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
     "postcss": "^8",
+    "prettier": "3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
