@@ -1,18 +1,18 @@
-import { useMemberId } from "@/hooks/use-member-id";
+import { useMemberId } from '@/hooks/use-member-id';
 
-import { useGetMessages } from "@/features/messages/api/use-get-messages";
-import { useGetMember } from "@/features/members/api/use-get-member";
+import { useGetMessages } from '@/features/messages/api/use-get-messages';
+import { useGetMember } from '@/features/members/api/use-get-member';
 
-import { Id } from "../../../../../../convex/_generated/dataModel";
-import { Loader } from "lucide-react";
+import { Id } from '../../../../../../convex/_generated/dataModel';
+import { Loader } from 'lucide-react';
 
-import { Header } from "./header";
-import { ChatInput } from "./chat-input";
-import { MessageList } from "@/components/message-list";
-import { usePanel } from "@/hooks/use-panel";
+import { Header } from './header';
+import { ChatInput } from './chat-input';
+import { MessageList } from '@/components/message-list';
+import { usePanel } from '@/hooks/use-panel';
 
 interface ConversationProps {
-  id: Id<"conversations">;
+  id: Id<'conversations'>;
 }
 
 export const Conversation = ({ id }: ConversationProps) => {
@@ -25,16 +25,16 @@ export const Conversation = ({ id }: ConversationProps) => {
   });
   const { results, status, loadMore } = useGetMessages({ conversationId: id });
 
-  if (memberLoading || status === "LoadingFirstPage") {
+  if (memberLoading || status === 'LoadingFirstPage') {
     return (
-      <div className="h-full flex items-center justify-center">
+      <div className="flex h-full items-center justify-center">
         <Loader className="size-6 animate-spin text-muted-foreground" />
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex h-full flex-col">
       <Header
         memberName={member?.user.name}
         memberImage={member?.user.image}
@@ -46,8 +46,8 @@ export const Conversation = ({ id }: ConversationProps) => {
         memberImage={member?.user.image}
         memberName={member?.user.name}
         loadMore={loadMore}
-        isLoadingMore={status === "LoadingMore"}
-        canLoadMore={status === "CanLoadMore"}
+        isLoadingMore={status === 'LoadingMore'}
+        canLoadMore={status === 'CanLoadMore'}
       />
       <ChatInput
         placeholder={`Message ${member?.user.name}`}

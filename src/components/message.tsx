@@ -1,48 +1,48 @@
 // ! Nextjs Dynamic import to avoid SSR
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic';
 // * Date Fns Functions and Types
-import { format, isToday, isYesterday } from "date-fns";
+import { format, isToday, isYesterday } from 'date-fns';
 // * Data Models
-import { Doc, Id } from "../../convex/_generated/dataModel";
+import { Doc, Id } from '../../convex/_generated/dataModel';
 // * Features and Hooks
-import { useUpdateMessage } from "@/features/messages/api/use-update-message";
-import { useRemoveMessage } from "@/features/messages/api/use-remove-message";
-import { useToggleReaction } from "@/features/reactions/api/use-toggle-reaction";
-import { useConfirm } from "@/hooks/use-confirm";
-import { usePanel } from "@/hooks/use-panel";
+import { useUpdateMessage } from '@/features/messages/api/use-update-message';
+import { useRemoveMessage } from '@/features/messages/api/use-remove-message';
+import { useToggleReaction } from '@/features/reactions/api/use-toggle-reaction';
+import { useConfirm } from '@/hooks/use-confirm';
+import { usePanel } from '@/hooks/use-panel';
 // * Third Party UI Components
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { toast } from "sonner";
-import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
 // * Components
-import { Hint } from "./hint";
-import { Thumbnail } from "./thumbnail";
-import { Toolbar } from "./toolbar";
-import { Reactions } from "./reactions";
-import { ThreadBar } from "./thread-bar";
+import { Hint } from './hint';
+import { Thumbnail } from './thumbnail';
+import { Toolbar } from './toolbar';
+import { Reactions } from './reactions';
+import { ThreadBar } from './thread-bar';
 // * Dynamic Imports from Quill and React-Quill
-const Renderer = dynamic(() => import("@/components/renderer"), { ssr: false });
-const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
+const Renderer = dynamic(() => import('@/components/renderer'), { ssr: false });
+const Editor = dynamic(() => import('@/components/editor'), { ssr: false });
 
 interface MessageProps {
-  id: Id<"messages">;
-  memberId: Id<"members">;
+  id: Id<'messages'>;
+  memberId: Id<'members'>;
   authorImage?: string;
   authorName?: string;
   isAuthor: boolean;
   reactions: Array<
-    Omit<Doc<"reactions">, "memberId"> & {
+    Omit<Doc<'reactions'>, 'memberId'> & {
       count: number;
-      memberIds: Id<"members">[];
+      memberIds: Id<'members'>[];
     }
   >;
-  body: Doc<"messages">["body"];
+  body: Doc<'messages'>['body'];
   image: string | null | undefined;
-  createdAt: Doc<"messages">["_creationTime"];
-  updatedAT: Doc<"messages">["updatedAt"];
+  createdAt: Doc<'messages'>['_creationTime'];
+  updatedAT: Doc<'messages'>['updatedAt'];
   isEditing: boolean;
   isCompact?: boolean;
-  setEditingId: (id: Id<"messages"> | null) => void;
+  setEditingId: (id: Id<'messages'> | null) => void;
   hideThreadButton?: boolean;
   threadCount?: number;
   threadImage?: string;
@@ -51,7 +51,7 @@ interface MessageProps {
 }
 
 const formatFullTime = (date: Date) => {
-  return `${isToday(date) ? "Today" : isYesterday(date) ? "Yesterday" : format(date, "MMM d, yyyy")} at ${format(date, "h:mm:ss a")} `;
+  return `${isToday(date) ? 'Today' : isYesterday(date) ? 'Yesterday' : format(date, 'MMM d, yyyy')} at ${format(date, 'h:mm:ss a')} `;
 };
 
 export const Message = ({
@@ -59,7 +59,7 @@ export const Message = ({
   isAuthor,
   memberId,
   authorImage,
-  authorName = "Member",
+  authorName = 'Member',
   reactions,
   body,
   image,
@@ -77,8 +77,8 @@ export const Message = ({
   const { onOpenMessage, onClose, parentMessageId, onOpenProfile } = usePanel();
 
   const [ConfirmDialog, confirm] = useConfirm(
-    "Delete message",
-    "Are you sure you want to delete this message? This action cannot be undone."
+    'Delete message',
+    'Are you sure you want to delete this message? This action cannot be undone.'
   );
 
   const { mutate: toggleReaction, isPending: isTogglingReaction } =
@@ -95,7 +95,7 @@ export const Message = ({
       { messageId: id, value },
       {
         onError: () => {
-          toast.error("Failed to add reaction");
+          toast.error('Failed to add reaction');
         },
       }
     );
@@ -110,13 +110,13 @@ export const Message = ({
       { id },
       {
         onSuccess: () => {
-          toast.success("Message deleted successfully");
+          toast.success('Message deleted successfully');
           if (parentMessageId === id) {
             onClose();
           }
         },
         onError: () => {
-          toast.error("Failed to delete message");
+          toast.error('Failed to delete message');
         },
       }
     );
@@ -127,11 +127,11 @@ export const Message = ({
       { id, body },
       {
         onSuccess: () => {
-          toast.success("Message updated successfully");
+          toast.success('Message updated successfully');
           setEditingId(null);
         },
         onError: () => {
-          toast.error("Failed to update message");
+          toast.error('Failed to update message');
         },
       }
     );
@@ -143,20 +143,20 @@ export const Message = ({
         <ConfirmDialog />
         <div
           className={cn(
-            "flex flex-col gap-2 p-1.5 px-5 hover:bg-gray-100/60 group relative",
-            isEditing && "bg-[#f2c74433] hover:bg-[#f2c74433]",
+            'group relative flex flex-col gap-2 p-1.5 px-5 hover:bg-gray-100/60',
+            isEditing && 'bg-[#f2c74433] hover:bg-[#f2c74433]',
             isRemovingMessage &&
-              "bg-rose-500/50 transform transition-all scale-y-0 origin-bottom duration-200"
+              'origin-bottom scale-y-0 transform bg-rose-500/50 transition-all duration-200'
           )}
         >
           <div className="flex items-start gap-2">
             <Hint label={formatFullTime(new Date(createdAt))}>
-              <button className="text-xs text-muted-foreground opacity-0 group-hover:opacity-100 w-[40px] leading-[22px] text-center hover:underline">
-                {format(new Date(createdAt), "HH:mm")}
+              <button className="w-[40px] text-center text-xs leading-[22px] text-muted-foreground opacity-0 hover:underline group-hover:opacity-100">
+                {format(new Date(createdAt), 'HH:mm')}
               </button>
             </Hint>
             {isEditing ? (
-              <div className="w-full h-full">
+              <div className="h-full w-full">
                 <Editor
                   onSubmit={handleUpdate}
                   disabled={isPending}
@@ -166,7 +166,7 @@ export const Message = ({
                 />
               </div>
             ) : (
-              <div className="flex flex-col w-full">
+              <div className="flex w-full flex-col">
                 <Renderer value={body} />
                 <Thumbnail url={image} />
                 {updatedAT ? (
@@ -208,10 +208,10 @@ export const Message = ({
       <ConfirmDialog />
       <div
         className={cn(
-          "flex flex-col gap-2 p-1.5 px-5 hover:bg-gray-100/60 group relative",
-          isEditing && "bg-[#f2c74433] hover:bg-[#f2c74433]",
+          'group relative flex flex-col gap-2 p-1.5 px-5 hover:bg-gray-100/60',
+          isEditing && 'bg-[#f2c74433] hover:bg-[#f2c74433]',
           isRemovingMessage &&
-            "bg-rose-500/50 transform transition-all scale-y-0 origin-bottom duration-200"
+            'origin-bottom scale-y-0 transform bg-rose-500/50 transition-all duration-200'
         )}
       >
         <div className="flex items-start gap-2">
@@ -222,7 +222,7 @@ export const Message = ({
             </Avatar>
           </button>
           {isEditing ? (
-            <div className="w-full h-full">
+            <div className="h-full w-full">
               <Editor
                 onSubmit={handleUpdate}
                 disabled={isPending}
@@ -232,7 +232,7 @@ export const Message = ({
               />
             </div>
           ) : (
-            <div className="flex flex-col w-full overflow-hidden">
+            <div className="flex w-full flex-col overflow-hidden">
               <div className="text-sm">
                 <button
                   className="font-bold text-primary hover:underline"
@@ -243,7 +243,7 @@ export const Message = ({
                 <span>&nbsp;&nbsp;</span>
                 <Hint label={formatFullTime(new Date(createdAt))}>
                   <button className="text-xs text-muted-foreground hover:underline">
-                    {format(new Date(createdAt), "h:mm a")}
+                    {format(new Date(createdAt), 'h:mm a')}
                   </button>
                 </Hint>
               </div>

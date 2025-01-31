@@ -1,4 +1,4 @@
-export type SignInFlow = "SignIn" | "SignUp";
+export type SignInFlow = 'SignIn' | 'SignUp';
 export interface SignInFormInputs {
   email: string;
   password: string;

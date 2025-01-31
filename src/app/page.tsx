@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
-import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import { useAuthActions } from "@convex-dev/auth/react";
-import { Input } from "@/components/ui/input";
-import { useConvexAuth } from "convex/react";
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import Image from 'next/image';
+import { FaGithub } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
+import { useAuthActions } from '@convex-dev/auth/react';
+import { Input } from '@/components/ui/input';
+import { useConvexAuth } from 'convex/react';
 
 export default function LandingPage() {
   const { signIn } = useAuthActions();
@@ -17,7 +17,7 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="flex justify-between items-center py-4 px-6 md:px-10 lg:px-20">
+      <nav className="flex items-center justify-between px-6 py-4 md:px-10 lg:px-20">
         <Link href="/" className="flex items-center space-x-2">
           <Image
             src="/logo.svg"
@@ -63,20 +63,20 @@ export default function LandingPage() {
         </div>
       </nav>
       {/* Hero Section */}
-      <section className="relative pt-20 pb-40 px-6 md:px-10 lg:px-20 bg-[#213555]">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+      <section className="relative bg-[#213555] px-6 pb-40 pt-20 md:px-10 lg:px-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
           <div>
             <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6"
+              className="mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              Your Place to Collaborate with different{" "}
+              Your Place to Collaborate with different{' '}
               <span className="text-blue-300">Communities.</span>
             </motion.h1>
             <motion.p
-              className="text-lg text-white/80 mb-8"
+              className="mb-8 text-lg text-white/80"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -85,14 +85,14 @@ export default function LandingPage() {
               can work faster and more flexibly than ever before.
             </motion.p>
             <motion.div
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col gap-4 sm:flex-row"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <Button
                 size="lg"
-                className="bg-[#4285F4] hover:bg-[#174EA6] text-white"
+                className="bg-[#4285F4] text-white hover:bg-[#174EA6]"
               >
                 <FcGoogle className="mr-2 h-5 w-5" />
                 Sign Up with Google
@@ -122,10 +122,10 @@ export default function LandingPage() {
         </div>
       </section>
       <section className="bg-white">
-        <div className="max-w-7xl mx-auto py-20 px-6 md:px-10 lg:px-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-32">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 lg:px-20">
+          <div className="mb-32 grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#213555] mb-6">
+              <h2 className="mb-6 text-3xl font-bold text-[#213555] md:text-4xl">
                 Bring your team together
               </h2>
               <p className="text-lg text-gray-600">
@@ -144,7 +144,7 @@ export default function LandingPage() {
             />
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-32">
+          <div className="mb-32 grid items-center gap-12 lg:grid-cols-2">
             <Image
               src="/team-1.svg"
               alt="Easy Communication"
@@ -153,7 +153,7 @@ export default function LandingPage() {
               className="rounded-lg shadow-lg lg:order-2"
             />
             <div className="lg:order-1">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#213555] mb-6">
+              <h2 className="mb-6 text-3xl font-bold text-[#213555] md:text-4xl">
                 Where hanging out is easy
               </h2>
               <p className="text-lg text-gray-600">
@@ -164,9 +164,9 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#213555] mb-6">
+              <h2 className="mb-6 text-3xl font-bold text-[#213555] md:text-4xl">
                 Create an invite-only place where you belong
               </h2>
               <p className="text-lg text-gray-600">
@@ -186,26 +186,26 @@ export default function LandingPage() {
         </div>
       </section>
       {/* Stats Section */}
-      <section className="bg-gray-50 py-20 px-6 md:px-10 lg:px-20">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#213555] mb-16">
+      <section className="bg-gray-50 px-6 py-20 md:px-10 lg:px-20">
+        <div className="mx-auto max-w-7xl text-center">
+          <h2 className="mb-16 text-3xl font-bold text-[#213555] md:text-4xl">
             Teams and Communities rely on Syncro
           </h2>
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="mb-16 grid gap-8 md:grid-cols-3">
             <div>
-              <p className="text-5xl font-bold text-[#213555] mb-4">85%</p>
+              <p className="mb-4 text-5xl font-bold text-[#213555]">85%</p>
               <p className="text-lg text-gray-600">
                 of users feel Syncro has improved communication
               </p>
             </div>
             <div>
-              <p className="text-5xl font-bold text-[#213555] mb-4">86%</p>
+              <p className="mb-4 text-5xl font-bold text-[#213555]">86%</p>
               <p className="text-lg text-gray-600">
                 feel their ability to work remotely has improved
               </p>
             </div>
             <div>
-              <p className="text-5xl font-bold text-[#213555] mb-4">88%</p>
+              <p className="mb-4 text-5xl font-bold text-[#213555]">88%</p>
               <p className="text-lg text-gray-600">
                 feel more connected to their teams
               </p>
@@ -214,9 +214,9 @@ export default function LandingPage() {
         </div>
       </section>
       {/* CTA Section */}
-      <section className="bg-[#213555] text-white py-20 px-6 md:px-10 lg:px-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">
+      <section className="bg-[#213555] px-6 py-20 text-white md:px-10 lg:px-20">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="mb-8 text-3xl font-bold md:text-4xl">
             Ready to start your journey?
           </h2>
           <Button
@@ -229,8 +229,8 @@ export default function LandingPage() {
         </div>
       </section>
       {/* Footer */}
-      <footer className="bg-white py-12 px-6 md:px-10 lg:px-20 border-t">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+      <footer className="border-t bg-white px-6 py-12 md:px-10 lg:px-20">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
           <div className="col-span-2 lg:col-span-1">
             <Link href="/" className="flex items-center space-x-2">
               <Image src="/logo.svg" alt="Syncro Logo" width={32} height={32} />
@@ -238,7 +238,7 @@ export default function LandingPage() {
             </Link>
           </div>
           <div>
-            <h3 className="font-semibold text-[#213555] mb-4">Product</h3>
+            <h3 className="mb-4 font-semibold text-[#213555]">Product</h3>
             <ul className="space-y-2">
               <li>
                 <Link
@@ -267,7 +267,7 @@ export default function LandingPage() {
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold text-[#213555] mb-4">Company</h3>
+            <h3 className="mb-4 font-semibold text-[#213555]">Company</h3>
             <ul className="space-y-2">
               <li>
                 <Link
@@ -296,7 +296,7 @@ export default function LandingPage() {
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold text-[#213555] mb-4">Resources</h3>
+            <h3 className="mb-4 font-semibold text-[#213555]">Resources</h3>
             <ul className="space-y-2">
               <li>
                 <Link
@@ -325,7 +325,7 @@ export default function LandingPage() {
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold text-[#213555] mb-4">Legal</h3>
+            <h3 className="mb-4 font-semibold text-[#213555]">Legal</h3>
             <ul className="space-y-2">
               <li>
                 <Link

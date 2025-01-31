@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, MeshDistortMaterial } from "@react-three/drei";
-import { useRef } from "react";
-import * as THREE from "three";
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Float, MeshDistortMaterial } from '@react-three/drei';
+import { useRef } from 'react';
+import * as THREE from 'three';
 
 function AnimatedShapes() {
   const group = useRef<THREE.Group>(null);

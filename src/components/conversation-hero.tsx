@@ -1,5 +1,5 @@
-import { format } from "date-fns";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { format } from 'date-fns';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 interface ConversationHeroProps {
   name?: string;
@@ -7,21 +7,21 @@ interface ConversationHeroProps {
 }
 
 export const ConversationHero = ({
-  name = "Member",
+  name = 'Member',
   image,
 }: ConversationHeroProps) => {
   const avatarFallback = name.charAt(0).toUpperCase();
 
   return (
-    <div className="mt-[88px] mx-5 mb-4">
-      <div className="flex items-center gap-x-1 mb-2">
-        <Avatar className="size-14 mr-2">
+    <div className="mx-5 mb-4 mt-[88px]">
+      <div className="mb-2 flex items-center gap-x-1">
+        <Avatar className="mr-2 size-14">
           <AvatarImage src={image} />
           <AvatarFallback>{avatarFallback}</AvatarFallback>
         </Avatar>
         <p className="text-2xl font-bold">{name}</p>
       </div>
-      <p className="font-normal text-slate-800 mb-4">
+      <p className="mb-4 font-normal text-slate-800">
         This is the beginning of your conversation with <strong>{name}</strong>
       </p>
     </div>

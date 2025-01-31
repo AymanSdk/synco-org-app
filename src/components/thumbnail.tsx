@@ -7,8 +7,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { XIcon } from "lucide-react";
+} from '@/components/ui/dialog';
+import { XIcon } from 'lucide-react';
 
 interface ThumbnailProps {
   url: string | null | undefined;
@@ -20,11 +20,11 @@ export const Thumbnail = ({ url }: ThumbnailProps) => {
   return (
     <Dialog>
       <DialogTrigger>
-        <div className="relative overflow-hidden max-w-[360px] border rounded-lg my-2 cursor-zoom-in">
+        <div className="relative my-2 max-w-[360px] cursor-zoom-in overflow-hidden rounded-lg border">
           <img
             src={url}
             alt="message image"
-            className="rounded-md object-cover size-full"
+            className="size-full rounded-md object-cover"
           />
         </div>
       </DialogTrigger>
@@ -32,7 +32,7 @@ export const Thumbnail = ({ url }: ThumbnailProps) => {
         <img
           src={url}
           alt="message image"
-          className="rounded-md object-cover size-full"
+          className="size-full rounded-md object-cover"
         />
       </DialogContent>
     </Dialog>

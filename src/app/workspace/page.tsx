@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { UserButton } from "@/features/auth/components/user-button";
+import { UserButton } from '@/features/auth/components/user-button';
 
-import { useEffect, useMemo } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 
-import { useGetWorkspaces } from "@/features/workspaces/api/use-get-workspaces";
-import { useCreateWorkspaceModal } from "@/features/workspaces/store/use-create-workspace-modal";
-import { Loader } from "lucide-react";
+import { useGetWorkspaces } from '@/features/workspaces/api/use-get-workspaces';
+import { useCreateWorkspaceModal } from '@/features/workspaces/store/use-create-workspace-modal';
+import { Loader } from 'lucide-react';
 
 export default function Home() {
   const router = useRouter();
@@ -29,7 +29,7 @@ export default function Home() {
   }, [workspaceId, isLoading, open, setOpen, router]);
 
   return (
-    <div className="h-full flex items-center justify-center">
+    <div className="flex h-full items-center justify-center">
       <Loader className="size-6 animate-spin text-muted-foreground" />
     </div>
   );

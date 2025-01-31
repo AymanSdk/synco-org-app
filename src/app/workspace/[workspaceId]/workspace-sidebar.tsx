@@ -4,24 +4,24 @@ import {
   Loader,
   MessageSquareText,
   SendHorizonal,
-} from "lucide-react";
+} from 'lucide-react';
 // features
-import { useCreateChannelModal } from "@/features/channels/store/use-create-channel-modal";
-import { useCurrentMember } from "@/features/members/api/use-current-member";
-import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
-import { useGetChannels } from "@/features/channels/api/use-get-channels";
-import { useGetMembers } from "@/features/members/api/use-get-members";
+import { useCreateChannelModal } from '@/features/channels/store/use-create-channel-modal';
+import { useCurrentMember } from '@/features/members/api/use-current-member';
+import { useGetWorkspace } from '@/features/workspaces/api/use-get-workspace';
+import { useGetChannels } from '@/features/channels/api/use-get-channels';
+import { useGetMembers } from '@/features/members/api/use-get-members';
 // hooks
-import { useWorkspaceId } from "@/hooks/use-workspace-id";
-import { useChannelId } from "@/hooks/use-channel-id";
+import { useWorkspaceId } from '@/hooks/use-workspace-id';
+import { useChannelId } from '@/hooks/use-channel-id';
 
-import { UserItem } from "./user-item";
-import { SidebarItem } from "./sidebar-item";
+import { UserItem } from './user-item';
+import { SidebarItem } from './sidebar-item';
 
-import { WorkspaceHeader } from "./workspace-header";
-import { WorkspaceSection } from "./workspace-section";
-import { useMemberId } from "@/hooks/use-member-id";
-import { Button } from "@/components/ui/button";
+import { WorkspaceHeader } from './workspace-header';
+import { WorkspaceSection } from './workspace-section';
+import { useMemberId } from '@/hooks/use-member-id';
+import { Button } from '@/components/ui/button';
 
 export const WorkspaceSidebar = () => {
   const memberId = useMemberId();
@@ -45,7 +45,7 @@ export const WorkspaceSidebar = () => {
 
   if (workspaceLoading || memberLoading) {
     return (
-      <div className="flex flex-col bg-[#3E5879] h-full items-center justify-center">
+      <div className="flex h-full flex-col items-center justify-center bg-[#3E5879]">
         <Loader className="size-5 animate-spin text-white" />
       </div>
     );
@@ -54,10 +54,10 @@ export const WorkspaceSidebar = () => {
   // check if workspace or member is not found and show an error message
   if (!workspace || !member) {
     return (
-      <div className="flex flex-col gap-y-2 bg-[#3E5879] h-full items-center justify-center">
+      <div className="flex h-full flex-col items-center justify-center gap-y-2 bg-[#3E5879]">
         <AlertTriangle className="size-5 text-white" />
-        <p className="text-white text-sm">Workspace not found</p>
-        <div className="flex gap-x-2 justify-between items-center">
+        <p className="text-sm text-white">Workspace not found</p>
+        <div className="flex items-center justify-between gap-x-2">
           <Button variant="default" size="sm">
             Create workspace
           </Button>
@@ -70,19 +70,19 @@ export const WorkspaceSidebar = () => {
   }
 
   return (
-    <div className="flex flex-col bg-[#3E5879] h-full">
+    <div className="flex h-full flex-col bg-[#3E5879]">
       <WorkspaceHeader
         workspace={workspace}
-        isAdmin={member.role === "admin"}
+        isAdmin={member.role === 'admin'}
       />
-      <div className="flex flex-col px-2 mt-3">
+      <div className="mt-3 flex flex-col px-2">
         <SidebarItem label="Threads" icon={MessageSquareText} id="threads" />
         <SidebarItem label="Drafts & Sent" icon={SendHorizonal} id="drafts" />
       </div>
       <WorkspaceSection
         label="Channels"
         hint="New channel"
-        onNew={member.role === "admin" ? () => setOpen(true) : undefined}
+        onNew={member.role === 'admin' ? () => setOpen(true) : undefined}
       >
         {channels?.map((item) => (
           <SidebarItem
@@ -90,7 +90,7 @@ export const WorkspaceSidebar = () => {
             icon={HashIcon}
             label={item.name}
             id={item._id}
-            variant={channelId === item._id ? "active" : "default"}
+            variant={channelId === item._id ? 'active' : 'default'}
           />
         ))}
       </WorkspaceSection>
@@ -105,7 +105,7 @@ export const WorkspaceSidebar = () => {
             id={item._id}
             label={item.user.name}
             image={item.user.image}
-            variant={item._id === memberId ? "active" : "default"}
+            variant={item._id === memberId ? 'active' : 'default'}
           />
         ))}
       </WorkspaceSection>

@@ -1,8 +1,8 @@
-import { MessageSquareTextIcon, Pencil, Smile, Trash } from "lucide-react";
+import { MessageSquareTextIcon, Pencil, Smile, Trash } from 'lucide-react';
 
-import { Button } from "./ui/button";
-import { Hint } from "./hint";
-import { EmojiPopover } from "./emoji-popover";
+import { Button } from './ui/button';
+import { Hint } from './hint';
+import { EmojiPopover } from './emoji-popover';
 
 interface ToolbarProps {
   isAuthor: boolean;
@@ -24,8 +24,8 @@ export const Toolbar = ({
   hideThreadButton,
 }: ToolbarProps) => {
   return (
-    <div className="absolute top-0 right-5">
-      <div className="group-hover:opacity-100 opacity-0 transition-opacity border bg-white rounded-md shadow-sm">
+    <div className="absolute right-5 top-0">
+      <div className="rounded-md border bg-white opacity-0 shadow-sm transition-opacity group-hover:opacity-100">
         <EmojiPopover
           hint="Add reaction"
           onEmojiSelect={(emoji) => handleReaction(emoji.native)}

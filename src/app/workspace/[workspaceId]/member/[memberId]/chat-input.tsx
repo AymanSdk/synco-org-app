@@ -1,29 +1,29 @@
-import Quill from "quill";
-import dynamic from "next/dynamic";
+import Quill from 'quill';
+import dynamic from 'next/dynamic';
 
-import { useCreateMessage } from "@/features/messages/api/use-create-message";
-import { useGenerateUploadUrl } from "@/features/upload/api/use-generate-upload-url";
+import { useCreateMessage } from '@/features/messages/api/use-create-message';
+import { useGenerateUploadUrl } from '@/features/upload/api/use-generate-upload-url';
 
-import { useChannelId } from "@/hooks/use-channel-id";
-import { useWorkspaceId } from "@/hooks/use-workspace-id";
+import { useChannelId } from '@/hooks/use-channel-id';
+import { useWorkspaceId } from '@/hooks/use-workspace-id';
 
-import { toast } from "sonner";
+import { toast } from 'sonner';
 
-import { useRef, useState } from "react";
-import { Id } from "../../../../../../convex/_generated/dataModel";
+import { useRef, useState } from 'react';
+import { Id } from '../../../../../../convex/_generated/dataModel';
 
-const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
+const Editor = dynamic(() => import('@/components/editor'), { ssr: false });
 
 interface ChatInputProps {
   placeholder: string;
-  conversationId: Id<"conversations">;
+  conversationId: Id<'conversations'>;
 }
 
 type CreateMessageValues = {
-  conversationId: Id<"conversations">;
-  workspaceId: Id<"workspaces">;
+  conversationId: Id<'conversations'>;
+  workspaceId: Id<'workspaces'>;
   body: string;
-  image?: Id<"_storage"> | undefined;
+  image?: Id<'_storage'> | undefined;
 };
 
 export const ChatInput = ({ placeholder, conversationId }: ChatInputProps) => {
@@ -59,17 +59,17 @@ export const ChatInput = ({ placeholder, conversationId }: ChatInputProps) => {
         const url = await generateUploadUrl({}, { throwError: true });
 
         if (!url) {
-          throw new Error("Url not found");
+          throw new Error('Url not found');
         }
 
         const result = await fetch(url, {
-          method: "POST",
-          headers: { "content-type": image.type },
+          method: 'POST',
+          headers: { 'content-type': image.type },
           body: image,
         });
 
         if (!result.ok) {
-          throw new Error("Failed to upload image");
+          throw new Error('Failed to upload image');
         }
 
         const { storageId } = await result.json();
@@ -81,7 +81,7 @@ export const ChatInput = ({ placeholder, conversationId }: ChatInputProps) => {
 
       setEditorKey((prevKey) => prevKey + 1);
     } catch (error) {
-      toast.error("Failed to send message");
+      toast.error('Failed to send message');
     } finally {
       setIsPending(false);
       editorRef?.current?.enable(true);
@@ -89,7 +89,7 @@ export const ChatInput = ({ placeholder, conversationId }: ChatInputProps) => {
   };
 
   return (
-    <div className="px-5 w-full">
+    <div className="w-full px-5">
       <Editor
         key={editorKey}
         placeholder={placeholder}

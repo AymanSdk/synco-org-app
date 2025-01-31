@@ -1,16 +1,16 @@
-"use client";
+'use client';
 // features
-import { useGetChannels } from "@/features/channels/api/use-get-channels";
-import { useCreateChannelModal } from "@/features/channels/store/use-create-channel-modal";
-import { useCurrentMember } from "@/features/members/api/use-current-member";
-import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
+import { useGetChannels } from '@/features/channels/api/use-get-channels';
+import { useCreateChannelModal } from '@/features/channels/store/use-create-channel-modal';
+import { useCurrentMember } from '@/features/members/api/use-current-member';
+import { useGetWorkspace } from '@/features/workspaces/api/use-get-workspace';
 // hooks
-import { useWorkspaceId } from "@/hooks/use-workspace-id";
+import { useWorkspaceId } from '@/hooks/use-workspace-id';
 
-import { Loader, TriangleAlert } from "lucide-react";
+import { Loader, TriangleAlert } from 'lucide-react';
 
-import { useRouter } from "next/navigation";
-import { useEffect, useMemo } from "react";
+import { useRouter } from 'next/navigation';
+import { useEffect, useMemo } from 'react';
 
 const WorkspaceIdPage = () => {
   const router = useRouter();
@@ -28,7 +28,7 @@ const WorkspaceIdPage = () => {
   });
 
   const channelId = useMemo(() => channels?.[0]?._id, [channels]);
-  const isAdmin = useMemo(() => member?.role === "admin", [member?.role]);
+  const isAdmin = useMemo(() => member?.role === 'admin', [member?.role]);
 
   useEffect(() => {
     if (
@@ -61,14 +61,14 @@ const WorkspaceIdPage = () => {
 
   if (workspaceLoading || channelsLoading || memberLoading) {
     return (
-      <div className="h-full flex flex-col flex-1 items-center justify-center gap-2">
+      <div className="flex h-full flex-1 flex-col items-center justify-center gap-2">
         <Loader className="size-6 animate-spin text-muted-foreground" />
       </div>
     );
   }
   if (!workspace || !member) {
     return (
-      <div className="h-full flex flex-col flex-1 items-center justify-center gap-2">
+      <div className="flex h-full flex-1 flex-col items-center justify-center gap-2">
         <TriangleAlert className="size-6 text-muted-foreground" />
         <span className="text-sm text-muted-foreground">
           Workspace not found.
@@ -78,7 +78,7 @@ const WorkspaceIdPage = () => {
   }
 
   return (
-    <div className="h-full flex flex-col flex-1 items-center justify-center gap-2">
+    <div className="flex h-full flex-1 flex-col items-center justify-center gap-2">
       <TriangleAlert className="size-6 text-muted-foreground" />
       <span className="text-sm text-muted-foreground">
         No channels found in this workspace.

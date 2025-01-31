@@ -1,9 +1,9 @@
-import { useQuery } from "convex/react";
-import { api } from "../../../../convex/_generated/api";
-import { Id } from "../../../../convex/_generated/dataModel";
+import { useQuery } from 'convex/react';
+import { api } from '../../../../convex/_generated/api';
+import { Id } from '../../../../convex/_generated/dataModel';
 
 interface UseGetMemberProps {
-  id: Id<"members">;
+  id: Id<'members'>;
 }
 
 export const useGetMember = ({ id }: UseGetMemberProps) => {

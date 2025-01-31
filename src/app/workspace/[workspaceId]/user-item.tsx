@@ -1,37 +1,37 @@
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-import { useWorkspaceId } from "@/hooks/use-workspace-id";
-import { Id } from "../../../../convex/_generated/dataModel";
-import { cn } from "@/lib/utils";
-import { cva, type VariantProps } from "class-variance-authority";
-import Link from "next/link";
+import { useWorkspaceId } from '@/hooks/use-workspace-id';
+import { Id } from '../../../../convex/_generated/dataModel';
+import { cn } from '@/lib/utils';
+import { cva, type VariantProps } from 'class-variance-authority';
+import Link from 'next/link';
 
 const userItemVariants = cva(
-  "flex items-center gap-1.5 justify-start font-normal h-7 px-4 text-sm overflow-hidden",
+  'flex items-center gap-1.5 justify-start font-normal h-7 px-4 text-sm overflow-hidden',
   {
     variants: {
       variant: {
-        default: "text-[#f9edffcc]",
-        active: "text-[#213555] bg-white/90 hover:bg-white/90",
+        default: 'text-[#f9edffcc]',
+        active: 'text-[#213555] bg-white/90 hover:bg-white/90',
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: 'default',
     },
   }
 );
 
 interface UserItemProps {
-  id: Id<"members">;
+  id: Id<'members'>;
   label?: string;
   image?: string;
-  variant?: VariantProps<typeof userItemVariants>["variant"];
+  variant?: VariantProps<typeof userItemVariants>['variant'];
 }
 
 export const UserItem = ({
   id,
-  label = "member",
+  label = 'member',
   image,
   variant,
 }: UserItemProps) => {
@@ -46,13 +46,13 @@ export const UserItem = ({
       asChild
     >
       <Link href={`/workspace/${workspaceId}/member/${id}`}>
-        <Avatar className="size-5 rounded-md mr-1">
+        <Avatar className="mr-1 size-5 rounded-md">
           <AvatarImage className="rounded-md" src={image} />
-          <AvatarFallback className="rounded-md bg-sky-500 text-white text-xs">
+          <AvatarFallback className="rounded-md bg-sky-500 text-xs text-white">
             {avatarFallback}
           </AvatarFallback>
         </Avatar>
-        <span className="text-sm truncate">{label}</span>
+        <span className="truncate text-sm">{label}</span>
       </Link>
     </Button>
   );

@@ -1,11 +1,11 @@
-import { Hint } from "@/components/hint";
-import { Button } from "@/components/ui/button";
+import { Hint } from '@/components/hint';
+import { Button } from '@/components/ui/button';
 
-import { cn } from "@/lib/utils";
-import { useToggle } from "react-use";
+import { cn } from '@/lib/utils';
+import { useToggle } from 'react-use';
 
-import { PlusIcon } from "lucide-react";
-import { FaCaretDown, FaCaretLeft, FaCaretRight } from "react-icons/fa";
+import { PlusIcon } from 'lucide-react';
+import { FaCaretDown, FaCaretLeft, FaCaretRight } from 'react-icons/fa';
 
 interface WorkspaceSectionProps {
   children: React.ReactNode;
@@ -23,21 +23,21 @@ export const WorkspaceSection = ({
   const [on, toggle] = useToggle(true);
 
   return (
-    <div className="flex flex-col mt-3 px-2">
-      <div className="flex items-center px-3.5 group">
+    <div className="mt-3 flex flex-col px-2">
+      <div className="group flex items-center px-3.5">
         <Button
           onClick={toggle}
           variant="transparent"
-          className="p-0.5 text-sm text-[#f9edffcc] shrink-0 size-6"
+          className="size-6 shrink-0 p-0.5 text-sm text-[#f9edffcc]"
         >
           <FaCaretRight
-            className={cn("size-4 transition-transform", on && "rotate-90")}
+            className={cn('size-4 transition-transform', on && 'rotate-90')}
           />
         </Button>
         <Button
           variant="transparent"
           size="sm"
-          className="group px-1.5 text-sm text-[#f9edffcc] h-[28px] justify-start overflow-hidden items-center"
+          className="group h-[28px] items-center justify-start overflow-hidden px-1.5 text-sm text-[#f9edffcc]"
         >
           <span className="truncate">{label}</span>
         </Button>
@@ -47,7 +47,7 @@ export const WorkspaceSection = ({
               onClick={onNew}
               variant="transparent"
               size="iconSm"
-              className="opacity-0 group-hover:opacity-100 transition-opacity ml-auto p-0.5 text-sm text-[#f9edffcc] size-6 shrink-0"
+              className="ml-auto size-6 shrink-0 p-0.5 text-sm text-[#f9edffcc] opacity-0 transition-opacity group-hover:opacity-100"
             >
               <PlusIcon className="size-5" />
             </Button>

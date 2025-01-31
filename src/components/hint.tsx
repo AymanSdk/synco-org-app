@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from '@/components/ui/tooltip';
 
 interface HintProps {
   label: string;
   children: React.ReactNode;
-  side?: "top" | "right" | "bottom" | "left";
-  align?: "start" | "center" | "end";
+  side?: 'top' | 'right' | 'bottom' | 'left';
+  align?: 'start' | 'center' | 'end';
 }
 
 export const Hint = ({ label, children, side, align }: HintProps) => {
@@ -22,9 +22,9 @@ export const Hint = ({ label, children, side, align }: HintProps) => {
         <TooltipContent
           side={side}
           align={align}
-          className="bg-black text-white border border-white/5"
+          className="border border-white/5 bg-black text-white"
         >
-          <p className="font-medium text-xs">{label}</p>
+          <p className="text-xs font-medium">{label}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

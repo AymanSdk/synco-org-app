@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useCurrentUser } from "@/app/auth/api/use-current-user";
-import { useAuthActions } from "@convex-dev/auth/react";
+import { useCurrentUser } from '@/app/auth/api/use-current-user';
+import { useAuthActions } from '@convex-dev/auth/react';
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,20 +12,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuSubContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from '@/components/ui/popover';
 import {
   DropdownMenuSub,
   DropdownMenuSubTrigger,
-} from "@radix-ui/react-dropdown-menu";
+} from '@radix-ui/react-dropdown-menu';
 import {
   BellOff,
   CheckCircle2,
@@ -40,59 +40,59 @@ import {
   Settings,
   User,
   Users,
-} from "lucide-react";
-import { useState } from "react";
+} from 'lucide-react';
+import { useState } from 'react';
 
 export const UserButton = () => {
-  const [status, setStatus] = useState("available");
-  const [customStatus, setCustomStatus] = useState("");
-  const [expirationTime, setExpirationTime] = useState("");
+  const [status, setStatus] = useState('available');
+  const [customStatus, setCustomStatus] = useState('');
+  const [expirationTime, setExpirationTime] = useState('');
 
   const { signOut } = useAuthActions();
   const { data, isLoading } = useCurrentUser();
 
   const statuses = [
     {
-      value: "available",
-      label: "Available",
+      value: 'available',
+      label: 'Available',
       icon: CheckCircle2,
-      color: "text-green-500",
-      bgColor: "bg-green-500",
+      color: 'text-green-500',
+      bgColor: 'bg-green-500',
     },
     {
-      value: "busy",
-      label: "Busy",
+      value: 'busy',
+      label: 'Busy',
       icon: MinusCircle,
-      color: "text-yellow-500",
-      bgColor: "bg-yellow-500",
+      color: 'text-yellow-500',
+      bgColor: 'bg-yellow-500',
     },
     {
-      value: "away",
-      label: "Away",
+      value: 'away',
+      label: 'Away',
       icon: Clock,
-      color: "text-orange-500",
-      bgColor: "bg-orange-500",
+      color: 'text-orange-500',
+      bgColor: 'bg-orange-500',
     },
     {
-      value: "do-not-disturb",
-      label: "Do Not Disturb",
+      value: 'do-not-disturb',
+      label: 'Do Not Disturb',
       icon: BellOff,
-      color: "text-red-500",
-      bgColor: "bg-red-500",
+      color: 'text-red-500',
+      bgColor: 'bg-red-500',
     },
   ];
 
   const currentStatus = statuses.find((s) => s.value === status) || {
-    value: "custom",
-    label: customStatus || "Set a status",
+    value: 'custom',
+    label: customStatus || 'Set a status',
     icon: MessageSquarePlus,
-    color: "text-blue-500",
-    bgColor: "bg-blue-500",
+    color: 'text-blue-500',
+    bgColor: 'bg-blue-500',
   };
 
   const handleCustomStatus = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("custom");
+    setStatus('custom');
   };
 
   const StatusIcon = currentStatus.icon;
@@ -111,15 +111,15 @@ export const UserButton = () => {
 
   return (
     <DropdownMenu modal={false}>
-      <DropdownMenuTrigger className="outline-none relative">
-        <Avatar className="size-10 hover:opacity-75 transition rounded-md">
+      <DropdownMenuTrigger className="relative outline-none">
+        <Avatar className="size-10 rounded-md transition hover:opacity-75">
           <AvatarImage alt={name} src={image} className="rounded-md" />
-          <AvatarFallback className="bg-sky-500 text-white rounded-md">
+          <AvatarFallback className="rounded-md bg-sky-500 text-white">
             {avatarFallback}
           </AvatarFallback>
         </Avatar>
         <span
-          className={`absolute bottom-0 right-0 rounded-full ${currentStatus.bgColor} ring-2 ring-white flex items-center justify-center w-4 h-4`}
+          className={`absolute bottom-0 right-0 rounded-full ${currentStatus.bgColor} flex h-4 w-4 items-center justify-center ring-2 ring-white`}
         >
           <StatusIcon className={`h-3 w-3 text-white`} />
         </span>
@@ -196,37 +196,37 @@ export const UserButton = () => {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <User className="size-4 mr-2" />
+            <User className="mr-2 size-4" />
             <span>Profile</span>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Settings className="size-4 mr-2" />
+            <Settings className="mr-2 size-4" />
             <span>Settings</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Users className="size-4 mr-2" />
+            <Users className="mr-2 size-4" />
             <span>Team</span>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Plus className="size-4 mr-2" />
+            <Plus className="mr-2 size-4" />
             <span>Create Workspace</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Github className="size-4 mr-2" />
+          <Github className="mr-2 size-4" />
           <span>GitHub</span>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <LifeBuoy className="size-4 mr-2" />
+          <LifeBuoy className="mr-2 size-4" />
           <span>Support</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LogOut className="size-4 mr-2" />
+          <LogOut className="mr-2 size-4" />
           <span>Log out</span>
         </DropdownMenuItem>
       </DropdownMenuContent>

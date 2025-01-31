@@ -1,6 +1,6 @@
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Dialog,
   DialogContent,
@@ -8,14 +8,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 
-import { useState } from "react";
-import { useCreateChannelModal } from "../store/use-create-channel-modal";
-import { useCreateChannel } from "../api/use-create-channel";
-import { useWorkspaceId } from "@/hooks/use-workspace-id";
+import { useState } from 'react';
+import { useCreateChannelModal } from '../store/use-create-channel-modal';
+import { useCreateChannel } from '../api/use-create-channel';
+import { useWorkspaceId } from '@/hooks/use-workspace-id';
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
 export const CreateChannelModal = () => {
   const router = useRouter();
@@ -23,15 +23,15 @@ export const CreateChannelModal = () => {
 
   const { mutate, isPending } = useCreateChannel();
   const [open, setOpen] = useCreateChannelModal();
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
 
   const handleClose = () => {
-    setName("");
+    setName('');
     setOpen(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\s+/g, "-").toLowerCase();
+    const value = e.target.value.replace(/\s+/g, '-').toLowerCase();
     setName(value);
   };
 
@@ -41,12 +41,12 @@ export const CreateChannelModal = () => {
       { name, workspaceId },
       {
         onSuccess: (id) => {
-          toast.success("Channel created successfully");
+          toast.success('Channel created successfully');
           router.push(`/workspace/${workspaceId}/channel/${id}`);
           handleClose();
         },
         onError: () => {
-          toast.error("Failed to create channel");
+          toast.error('Failed to create channel');
         },
       }
     );

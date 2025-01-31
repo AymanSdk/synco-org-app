@@ -1,7 +1,7 @@
 // Shadcn UI components
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Dialog,
   DialogClose,
@@ -11,20 +11,20 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { TrashIcon } from "lucide-react";
-import { FaChevronDown } from "react-icons/fa";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+} from '@/components/ui/dialog';
+import { TrashIcon } from 'lucide-react';
+import { FaChevronDown } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 // import { DialogClose } from "@radix-ui/react-dialog";
 // Features
-import { useUpdateChannel } from "@/features/channels/api/use-update-channel";
-import { useRemoveChannel } from "@/features/channels/api/use-remove-channel";
+import { useUpdateChannel } from '@/features/channels/api/use-update-channel';
+import { useRemoveChannel } from '@/features/channels/api/use-remove-channel';
 // hooks
-import { useChannelId } from "@/hooks/use-channel-id";
-import { useWorkspaceId } from "@/hooks/use-workspace-id";
-import { useConfirm } from "@/hooks/use-confirm";
-import { useCurrentMember } from "@/features/members/api/use-current-member";
+import { useChannelId } from '@/hooks/use-channel-id';
+import { useWorkspaceId } from '@/hooks/use-workspace-id';
+import { useConfirm } from '@/hooks/use-confirm';
+import { useCurrentMember } from '@/features/members/api/use-current-member';
 
 interface HeaderProps {
   title: string;
@@ -35,8 +35,8 @@ export const Header = ({ title }: HeaderProps) => {
   const workspaceId = useWorkspaceId();
   const channelId = useChannelId();
   const [ConfirmDialog, confirm] = useConfirm(
-    "Delete this channel?",
-    "You are about to delete this channel? All messages will be lost. This action cannot be undone."
+    'Delete this channel?',
+    'You are about to delete this channel? All messages will be lost. This action cannot be undone.'
   );
 
   const [value, setValue] = useState(title);
@@ -49,14 +49,14 @@ export const Header = ({ title }: HeaderProps) => {
     useRemoveChannel();
 
   const handleEditOpen = (value: boolean) => {
-    if (member?.role !== "admin") return;
+    if (member?.role !== 'admin') return;
 
     setEditOpen(value);
   };
 
   // regex to replace all spaces with hyphens and convert to lowercase
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\s+/g, "-").toLowerCase();
+    const value = e.target.value.replace(/\s+/g, '-').toLowerCase();
     setValue(value);
   };
 
@@ -69,11 +69,11 @@ export const Header = ({ title }: HeaderProps) => {
       { id: channelId },
       {
         onSuccess: () => {
-          toast.success("Channel deleted successfully");
+          toast.success('Channel deleted successfully');
           router.push(`/workspace/${workspaceId}`);
         },
         onError: () => {
-          toast.error("Failed to delete channel");
+          toast.error('Failed to delete channel');
         },
       }
     );
@@ -86,42 +86,42 @@ export const Header = ({ title }: HeaderProps) => {
       { id: channelId, name: value },
       {
         onSuccess: () => {
-          toast.success("Channel updated successfully");
+          toast.success('Channel updated successfully');
           setEditOpen(false);
         },
         onError: () => {
-          toast.error("Failed to update channel");
+          toast.error('Failed to update channel');
         },
       }
     );
   };
 
   return (
-    <div className="bg-white border-b h-[49px] flex items-center px-4 overflow-hidden">
+    <div className="flex h-[49px] items-center overflow-hidden border-b bg-white px-4">
       <ConfirmDialog />
       <Dialog>
         <DialogTrigger asChild>
           <Button
             variant="ghost"
             size="sm"
-            className="text-lg font-semibold px-2 overflow-hidden w-auto"
+            className="w-auto overflow-hidden px-2 text-lg font-semibold"
           >
             <span className="truncate"># {title}</span>
-            <FaChevronDown className="size-2.5 ml-2" />
+            <FaChevronDown className="ml-2 size-2.5" />
           </Button>
         </DialogTrigger>
-        <DialogContent className="p-0 bg-gray-50 overflow-hidden">
-          <DialogHeader className="p-4 border-b bg-white">
+        <DialogContent className="overflow-hidden bg-gray-50 p-0">
+          <DialogHeader className="border-b bg-white p-4">
             <DialogTitle># {title}</DialogTitle>
           </DialogHeader>
-          <div className="px-4 pb-4 flex flex-col gap-y-2">
+          <div className="flex flex-col gap-y-2 px-4 pb-4">
             <Dialog open={editOpen} onOpenChange={handleEditOpen}>
               <DialogTrigger asChild>
-                <div className="px-5 py-4 bg-white rounded-lg border cursor-pointer hover:bg-gray-50">
+                <div className="cursor-pointer rounded-lg border bg-white px-5 py-4 hover:bg-gray-50">
                   <div className="flex items-center justify-between">
                     <p className="text-sm font-semibold">Channel name</p>
-                    {member?.role === "admin" && (
-                      <p className="text-sm text-[#1264a3] hover:underline font-semibold">
+                    {member?.role === 'admin' && (
+                      <p className="text-sm font-semibold text-[#1264a3] hover:underline">
                         Edit
                       </p>
                     )}
@@ -160,11 +160,11 @@ export const Header = ({ title }: HeaderProps) => {
                 </form>
               </DialogContent>
             </Dialog>
-            {member?.role === "admin" && (
+            {member?.role === 'admin' && (
               <button
                 onClick={handleDelete}
                 disabled={isRemovingChannel}
-                className="flex items-center gap-x-2 px-5 py-4 bg-white rounded-lg cursor-pointer border hover:bg-gray-50 text-rose-600"
+                className="flex cursor-pointer items-center gap-x-2 rounded-lg border bg-white px-5 py-4 text-rose-600 hover:bg-gray-50"
               >
                 <TrashIcon className="size-4" />
                 <p className="text-sm font-semibold">Delete channel</p>

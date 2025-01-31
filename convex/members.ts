@@ -1,15 +1,15 @@
-import { v } from "convex/values";
-import { auth } from "./auth";
+import { v } from 'convex/values';
+import { auth } from './auth';
 
-import { mutation, query, QueryCtx } from "./_generated/server";
-import { Id } from "./_generated/dataModel";
+import { mutation, query, QueryCtx } from './_generated/server';
+import { Id } from './_generated/dataModel';
 
-const populateUser = (ctx: QueryCtx, id: Id<"users">) => {
+const populateUser = (ctx: QueryCtx, id: Id<'users'>) => {
   return ctx.db.get(id);
 };
 
 export const getById = query({
-  args: { id: v.id("members") },
+  args: { id: v.id('members') },
   handler: async (ctx, args) => {
     const userId = await auth.getUserId(ctx);
 
@@ -24,9 +24,9 @@ export const getById = query({
     }
 
     const currentMember = await ctx.db
-      .query("members")
-      .withIndex("by_workspace_id_user_id", (q) =>
-        q.eq("workspaceId", member.workspaceId).eq("userId", userId)
+      .query('members')
+      .withIndex('by_workspace_id_user_id', (q) =>
+        q.eq('workspaceId', member.workspaceId).eq('userId', userId)
       );
 
     if (!currentMember) {
@@ -47,7 +47,7 @@ export const getById = query({
 });
 
 export const get = query({
-  args: { workspaceId: v.id("workspaces") },
+  args: { workspaceId: v.id('workspaces') },
   handler: async (ctx, args) => {
     const userId = await auth.getUserId(ctx);
 
@@ -56,9 +56,9 @@ export const get = query({
     }
 
     const member = await ctx.db
-      .query("members")
-      .withIndex("by_workspace_id_user_id", (q) =>
-        q.eq("workspaceId", args.workspaceId).eq("userId", userId)
+      .query('members')
+      .withIndex('by_workspace_id_user_id', (q) =>
+        q.eq('workspaceId', args.workspaceId).eq('userId', userId)
       )
       .unique();
 
@@ -67,9 +67,9 @@ export const get = query({
     }
 
     const data = await ctx.db
-      .query("members")
-      .withIndex("by_workspace_id", (q) =>
-        q.eq("workspaceId", args.workspaceId)
+      .query('members')
+      .withIndex('by_workspace_id', (q) =>
+        q.eq('workspaceId', args.workspaceId)
       )
       .collect();
 
@@ -91,7 +91,7 @@ export const get = query({
 });
 
 export const current = query({
-  args: { workspaceId: v.id("workspaces") },
+  args: { workspaceId: v.id('workspaces') },
   handler: async (ctx, args) => {
     const userId = await auth.getUserId(ctx);
 
@@ -100,9 +100,9 @@ export const current = query({
     }
 
     const member = await ctx.db
-      .query("members")
-      .withIndex("by_workspace_id_user_id", (q) =>
-        q.eq("workspaceId", args.workspaceId).eq("userId", userId)
+      .query('members')
+      .withIndex('by_workspace_id_user_id', (q) =>
+        q.eq('workspaceId', args.workspaceId).eq('userId', userId)
       )
       .unique();
 
@@ -116,31 +116,31 @@ export const current = query({
 
 export const update = mutation({
   args: {
-    id: v.id("members"),
-    role: v.union(v.literal("admin"), v.literal("member")),
+    id: v.id('members'),
+    role: v.union(v.literal('admin'), v.literal('member')),
   },
   handler: async (ctx, args) => {
     const userId = await auth.getUserId(ctx);
 
     if (!userId) {
-      throw new Error("Unauthorized");
+      throw new Error('Unauthorized');
     }
 
     const member = await ctx.db.get(args.id);
 
     if (!member) {
-      throw new Error("Member not found");
+      throw new Error('Member not found');
     }
 
     const currentMember = await ctx.db
-      .query("members")
-      .withIndex("by_workspace_id_user_id", (q) =>
-        q.eq("workspaceId", member.workspaceId).eq("userId", userId)
+      .query('members')
+      .withIndex('by_workspace_id_user_id', (q) =>
+        q.eq('workspaceId', member.workspaceId).eq('userId', userId)
       )
       .unique();
 
-    if (!currentMember || currentMember.role !== "admin") {
-      throw new Error("Unauthorized");
+    if (!currentMember || currentMember.role !== 'admin') {
+      throw new Error('Unauthorized');
     }
 
     await ctx.db.patch(args.id, {
@@ -153,55 +153,55 @@ export const update = mutation({
 // / -- Handle Remove -- /
 export const remove = mutation({
   args: {
-    id: v.id("members"),
+    id: v.id('members'),
   },
   handler: async (ctx, args) => {
     const userId = await auth.getUserId(ctx);
 
     if (!userId) {
-      throw new Error("Unauthorized");
+      throw new Error('Unauthorized');
     }
 
     const member = await ctx.db.get(args.id);
 
     if (!member) {
-      throw new Error("Member not found");
+      throw new Error('Member not found');
     }
 
     const currentMember = await ctx.db
-      .query("members")
-      .withIndex("by_workspace_id_user_id", (q) =>
-        q.eq("workspaceId", member.workspaceId).eq("userId", userId)
+      .query('members')
+      .withIndex('by_workspace_id_user_id', (q) =>
+        q.eq('workspaceId', member.workspaceId).eq('userId', userId)
       )
       .unique();
 
     if (!currentMember) {
-      throw new Error("Unauthorized");
+      throw new Error('Unauthorized');
     }
 
-    if (member.role === "admin") {
-      throw new Error("Cannot remove admin");
+    if (member.role === 'admin') {
+      throw new Error('Cannot remove admin');
     }
 
-    if (currentMember._id === args.id && currentMember.role === "admin") {
-      throw new Error("Cannot remove self as admin");
+    if (currentMember._id === args.id && currentMember.role === 'admin') {
+      throw new Error('Cannot remove self as admin');
     }
 
     const [messages, reactions, conversations] = await Promise.all([
       ctx.db
-        .query("messages")
-        .withIndex("by_member_id", (q) => q.eq("memberId", member._id))
+        .query('messages')
+        .withIndex('by_member_id', (q) => q.eq('memberId', member._id))
         .collect(),
       ctx.db
-        .query("reactions")
-        .withIndex("by_member_id", (q) => q.eq("memberId", member._id))
+        .query('reactions')
+        .withIndex('by_member_id', (q) => q.eq('memberId', member._id))
         .collect(),
       ctx.db
-        .query("conversations")
+        .query('conversations')
         .filter((q) =>
           q.or(
-            q.eq(q.field("memberOneId"), member._id),
-            q.eq(q.field("memberTwoId"), member._id)
+            q.eq(q.field('memberOneId'), member._id),
+            q.eq(q.field('memberTwoId'), member._id)
           )
         )
         .collect(),

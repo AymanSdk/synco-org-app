@@ -1,13 +1,13 @@
-import { ChevronDown, ListFilter, SquarePen } from "lucide-react";
-import { useState } from "react";
+import { ChevronDown, ListFilter, SquarePen } from 'lucide-react';
+import { useState } from 'react';
 
-import { Doc } from "../../../../convex/_generated/dataModel";
+import { Doc } from '../../../../convex/_generated/dataModel';
 
-import { PreferencesModal } from "./preferences-modal";
-import { InviteModal } from "./invite-modal";
+import { PreferencesModal } from './preferences-modal';
+import { InviteModal } from './invite-modal';
 
-import { Button } from "@/components/ui/button";
-import { Hint } from "@/components/hint";
+import { Button } from '@/components/ui/button';
+import { Hint } from '@/components/hint';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,10 +15,10 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 
 interface WorkspaceHeaderProps {
-  workspace: Doc<"workspaces">;
+  workspace: Doc<'workspaces'>;
   isAdmin: boolean;
 }
 
@@ -42,21 +42,21 @@ export const WorkspaceHeader = ({
         setOpen={setPreferencesOpen}
         initialValue={workspace.name}
       />
-      <div className="flex items-center justify-between px-4 h-[49px] gap-0.5">
+      <div className="flex h-[49px] items-center justify-between gap-0.5 px-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
               variant="transparent"
-              className="font-semibold text-lg w-auto p-1.5 overflow-hidden"
+              className="w-auto overflow-hidden p-1.5 text-lg font-semibold"
               size="sm"
             >
               <span className="truncate">{workspace.name}</span>
-              <ChevronDown className="size-4 ml-1 shrink-0" />
+              <ChevronDown className="ml-1 size-4 shrink-0" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent side="bottom" align="start" className="w-64">
             <DropdownMenuItem className="cursor-pointer capitalize">
-              <div className="size-9 relative overflow-hidden bg-[#616061] text-white font-semibold text-xl rounded-md flex items-center justify-center mr-2">
+              <div className="relative mr-2 flex size-9 items-center justify-center overflow-hidden rounded-md bg-[#616061] text-xl font-semibold text-white">
                 {workspace.name.charAt(0).toUpperCase()}
               </div>
               <div className="flex flex-col items-start">

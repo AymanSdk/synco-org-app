@@ -1,6 +1,6 @@
-import { UserButton } from "@/features/auth/components/user-button";
-import { WorkspaceSwitcher } from "./workspace-switcher";
-import { SidebarButton } from "./sidebar-button";
+import { UserButton } from '@/features/auth/components/user-button';
+import { WorkspaceSwitcher } from './workspace-switcher';
+import { SidebarButton } from './sidebar-button';
 import {
   BellIcon,
   Calendar,
@@ -11,27 +11,27 @@ import {
   Presentation,
   Settings,
   BookOpen,
-} from "lucide-react";
+} from 'lucide-react';
 
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/router";
+import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/router';
 
-import { Button } from "@/components/ui/button";
-import { useAuthActions } from "@convex-dev/auth/react";
+import { Button } from '@/components/ui/button';
+import { useAuthActions } from '@convex-dev/auth/react';
 
-import Link from "next/link";
+import Link from 'next/link';
 
 export const Sidebar = () => {
   const pathname = usePathname();
   const { signOut } = useAuthActions();
 
   return (
-    <aside className="w-[70px] h-full bg-[#213555] flex flex-col gap-y-4 items-center pt-[9px] pb-4">
+    <aside className="flex h-full w-[70px] flex-col items-center gap-y-4 bg-[#213555] pb-4 pt-[9px]">
       <WorkspaceSwitcher />
       <SidebarButton
         icon={Home}
         label="Home"
-        isActive={pathname.includes("/workspace")}
+        isActive={pathname.includes('/workspace')}
       />
       <SidebarButton icon={MessagesSquareIcon} label="Messages" />
       <SidebarButton icon={Calendar} label="Meeting" />
@@ -40,12 +40,12 @@ export const Sidebar = () => {
         <SidebarButton
           icon={BookOpen}
           label="API Docs"
-          isActive={pathname === "/api-docs"}
+          isActive={pathname === '/api-docs'}
         />
       </Link>
       <SidebarButton icon={Settings} label="Settings" />
       <SidebarButton icon={MoreHorizontal} label="More" />
-      <div className="flex flex-col items-center justify-center gap-y-1 mt-auto">
+      <div className="mt-auto flex flex-col items-center justify-center gap-y-1">
         <UserButton />
       </div>
       <Button variant="transparent" size="icon" onClick={() => signOut()}>

@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 // hooks and api endpoints
-import { useWorkspaceId } from "@/hooks/use-workspace-id";
-import { useGetWorkspaceInfo } from "@/features/workspaces/api/use-get-workspace-info";
-import { useJoin } from "@/features/workspaces/api/use-join";
+import { useWorkspaceId } from '@/hooks/use-workspace-id';
+import { useGetWorkspaceInfo } from '@/features/workspaces/api/use-get-workspace-info';
+import { useJoin } from '@/features/workspaces/api/use-join';
 // 3th party components
-import VerificationInput from "react-verification-input";
+import VerificationInput from 'react-verification-input';
 
-import { Loader } from "lucide-react";
-import { useMemo, useEffect } from "react";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
+import { Loader } from 'lucide-react';
+import { useMemo, useEffect } from 'react';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 const JoinPage = () => {
   const router = useRouter();
@@ -38,10 +38,10 @@ const JoinPage = () => {
       {
         onSuccess: (id) => {
           router.replace(`/workspace/${id}`);
-          toast.success("Successfully joined the workspace");
+          toast.success('Successfully joined the workspace');
         },
         onError: () => {
-          toast.error("Failed to join the workspace");
+          toast.error('Failed to join the workspace');
         },
       }
     );
@@ -49,17 +49,17 @@ const JoinPage = () => {
 
   if (isLoading) {
     return (
-      <div className="h-full flex items-center justify-center">
+      <div className="flex h-full items-center justify-center">
         <Loader className="size-6 animate-spin text-muted-foreground" />
       </div>
     );
   }
 
   return (
-    <div className="h-full flex flex-col gap-y-8 items-center justify-center bg-white rounded-lg shadow-md">
-      <Image src={"/logo.svg"} width={60} height={60} alt="logo" />
-      <div className="flex flex-col gap-y-4 items-center justify-center max-w-md">
-        <div className="flex flex-col gap-y-2 items-center justify-center">
+    <div className="flex h-full flex-col items-center justify-center gap-y-8 rounded-lg bg-white shadow-md">
+      <Image src={'/logo.svg'} width={60} height={60} alt="logo" />
+      <div className="flex max-w-md flex-col items-center justify-center gap-y-4">
+        <div className="flex flex-col items-center justify-center gap-y-2">
           <h1 className="text-2xl font-bold">Join {data?.name}</h1>
           <p className="text-md text-muted-foreground">
             Enter the workspace code to join
@@ -71,14 +71,14 @@ const JoinPage = () => {
           autoFocus
           classNames={{
             container: cn(
-              "flex gap-x-2",
-              isPending && "opacity-50 cursor-not-allowed"
+              'flex gap-x-2',
+              isPending && 'opacity-50 cursor-not-allowed'
             ),
             character:
-              "uppercase h-auto rounded-md border border-gray-300 flex items-center justify-center text-lg font-medium text-gray-500",
-            characterInactive: "bg-muted",
-            characterSelected: "bg-white text-black",
-            characterFilled: "bg-white text-black",
+              'uppercase h-auto rounded-md border border-gray-300 flex items-center justify-center text-lg font-medium text-gray-500',
+            characterInactive: 'bg-muted',
+            characterSelected: 'bg-white text-black',
+            characterFilled: 'bg-white text-black',
           }}
         />
       </div>

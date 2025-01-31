@@ -1,23 +1,23 @@
-import { Button } from "@/components/ui/button";
-import { LucideIcon } from "lucide-react";
-import { useWorkspaceId } from "@/hooks/use-workspace-id";
-import { IconType } from "react-icons/lib";
-import Link from "next/link";
+import { Button } from '@/components/ui/button';
+import { LucideIcon } from 'lucide-react';
+import { useWorkspaceId } from '@/hooks/use-workspace-id';
+import { IconType } from 'react-icons/lib';
+import Link from 'next/link';
 // dynamic stuling for button component
-import { cn } from "@/lib/utils";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from '@/lib/utils';
+import { cva, type VariantProps } from 'class-variance-authority';
 
 const sidebarItemVariants = cva(
-  "flex items-center gap-1.5 justify-start font-normal h-7 px-[18px] text-sm overflow-hidden",
+  'flex items-center gap-1.5 justify-start font-normal h-7 px-[18px] text-sm overflow-hidden',
   {
     variants: {
       variant: {
-        default: "text-[#f9edffcc]",
-        active: "text-[#213555] bg-white/90 hover:bg-white/90",
+        default: 'text-[#f9edffcc]',
+        active: 'text-[#213555] bg-white/90 hover:bg-white/90',
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: 'default',
     },
   }
 );
@@ -26,7 +26,7 @@ interface SidebarItemProps {
   label: string;
   id: string;
   icon: LucideIcon | IconType;
-  variant?: VariantProps<typeof sidebarItemVariants>["variant"];
+  variant?: VariantProps<typeof sidebarItemVariants>['variant'];
 }
 
 export const SidebarItem = ({
@@ -45,8 +45,8 @@ export const SidebarItem = ({
       className={cn(sidebarItemVariants({ variant }))}
     >
       <Link href={`/workspace/${workspaceId}/channel/${id}`}>
-        <Icon className="size-3.5 mr-1 shrink-0" />
-        <span className="text-sm truncate">{label}</span>
+        <Icon className="mr-1 size-3.5 shrink-0" />
+        <span className="truncate text-sm">{label}</span>
       </Link>
     </Button>
   );

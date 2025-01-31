@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import { usePanel } from "@/hooks/use-panel";
+import { usePanel } from '@/hooks/use-panel';
 
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/resizable";
+} from '@/components/ui/resizable';
 
-import { Sidebar } from "./sidebar";
-import { Toolbar } from "./toolbar";
-import { WorkspaceSidebar } from "./workspace-sidebar";
-import { Loader } from "lucide-react";
-import { Id } from "../../../../convex/_generated/dataModel";
-import { Thread } from "@/features/messages/components/thread";
-import { Profile } from "./member/components/profile";
-import Footer from "@/components/Footer";
+import { Sidebar } from './sidebar';
+import { Toolbar } from './toolbar';
+import { WorkspaceSidebar } from './workspace-sidebar';
+import { Loader } from 'lucide-react';
+import { Id } from '../../../../convex/_generated/dataModel';
+import { Thread } from '@/features/messages/components/thread';
+import { Profile } from './member/components/profile';
+import Footer from '@/components/Footer';
 
 interface WorkspaceIdLayoutProps {
   children: React.ReactNode;
@@ -27,7 +27,7 @@ const WorkspaceIdLayout = ({ children }: WorkspaceIdLayoutProps) => {
   const showPanel = !!parentMessageId || !!profileMemberId;
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="flex h-screen flex-col">
       <Toolbar />
       <div className="flex flex-1">
         <Sidebar />
@@ -52,12 +52,12 @@ const WorkspaceIdLayout = ({ children }: WorkspaceIdLayoutProps) => {
               <ResizablePanel minSize={20} defaultSize={29}>
                 {parentMessageId ? (
                   <Thread
-                    messageId={parentMessageId as Id<"messages">}
+                    messageId={parentMessageId as Id<'messages'>}
                     onClose={onClose}
                   />
                 ) : profileMemberId ? (
                   <Profile
-                    memberId={profileMemberId as Id<"members">}
+                    memberId={profileMemberId as Id<'members'>}
                     onClose={onClose}
                   />
                 ) : (
