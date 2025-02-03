@@ -1,14 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { useAuthActions } from '@convex-dev/auth/react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { useAuthActions } from '@convex-dev/auth/react';
-import { Input } from '@/components/ui/input';
-import { Instagram } from 'lucide-react';
 
 export default function LandingPage() {
   const { signIn } = useAuthActions();
@@ -114,27 +112,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      {/* Trusted By Section
-      <section className="bg-gray-50 py-16 px-6 md:px-10 lg:px-20">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-lg font-semibold text-gray-600 mb-8">
-            TRUSTED BY COMPANIES ALL OVER THE WORLD
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-60">
-            {[...Array(6)].map((_, i) => (
-              <Image
-                key={i}
-                src="/placeholder.svg?height=50&width=120"
-                alt={`Company ${i + 1}`}
-                width={120}
-                height={50}
-                className="max-h-12 w-auto"
-              />
-            ))}
-          </div>
-        </div>
-      </section> */}
-      {/* Feature Sections */}
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 lg:px-20">
           <div className="mb-32 grid items-center gap-12 lg:grid-cols-2">
