@@ -48,7 +48,7 @@ export const UserItem = ({
       <Link href={`/workspace/${workspaceId}/member/${id}`}>
         <Avatar className="mr-1 size-5 rounded-md">
           <AvatarImage className="rounded-md" src={image} />
-          <AvatarFallback className="rounded-md bg-sky-500 text-xs text-white">
+          <AvatarFallback className="bg-sky-500 rounded-md text-xs text-white">
             {avatarFallback}
           </AvatarFallback>
         </Avatar>

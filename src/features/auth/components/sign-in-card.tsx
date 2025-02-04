@@ -107,7 +107,7 @@ export const SignInCard: React.FC<SignInCardProps> = ({ setState }) => {
 
           <Button
             type="submit"
-            className="w-full bg-sky-900 hover:bg-sky-950"
+            className="bg-sky-900 hover:bg-sky-950 w-full"
             size="lg"
             disabled={isSubmitting}
           >
@@ -158,7 +158,7 @@ export const SignInCard: React.FC<SignInCardProps> = ({ setState }) => {
           Don&apos;t have an account?{' '}
           <button
             onClick={() => setState('SignUp')}
-            className="font-medium text-sky-600 underline hover:text-sky-700"
+            className="text-sky-600 hover:text-sky-700 font-medium underline"
           >
             Sign Up
           </button>
