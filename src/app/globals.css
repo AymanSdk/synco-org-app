@@ -10,6 +10,12 @@ body,
 
 @layer base {
   :root {
+    --night-hsl: 210, 50%, 30%; /* #274C77 Dark blue (topbar, sidebar fixed, footer)*/
+    --sky-hsl: 200, 40%, 50%; /* #6096BA Lighter blue (sidebar dynamic) */
+    --stone-hsl: 220, 10%, 90%; /* #E7ECEF Light gray (threads)*/
+    --snow-hsl: 225, 15%, 98%; /* #FDFEFF Off-white (main content)*/
+    --ink-hsl: 210, 80%, 20%; /* #333 Dark text (on light backgrounds)*/
+    --frost-hsl: 220, 10%, 90%; /* #EEE Light text (on dark backgrounds)*/
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -38,6 +44,12 @@ body,
   }
 
   .dark {
+    --night-hsl: 210, 50%, 15%;
+    --sky-hsl: 200, 40%, 30%;
+    --stone-hsl: 220, 10%, 20%;
+    --snow-hsl: 225, 15%, 10%;
+    --ink-hsl: 210, 90%, 90%;
+    --frost-hsl: 220, 20%, 10%;
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
