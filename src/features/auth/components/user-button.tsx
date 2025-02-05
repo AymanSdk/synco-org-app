@@ -114,7 +114,7 @@ export const UserButton = () => {
       <DropdownMenuTrigger className="relative outline-none">
         <Avatar className="size-10 rounded-md transition hover:opacity-75">
           <AvatarImage alt={name} src={image} className="rounded-md" />
-          <AvatarFallback className="bg-sky-500 rounded-md text-white">
+          <AvatarFallback className="rounded-md bg-sky-500 text-white">
             {avatarFallback}
           </AvatarFallback>
         </Avatar>
