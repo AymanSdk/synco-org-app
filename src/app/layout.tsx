@@ -8,7 +8,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 
 import { Modals } from '@/components/modals';
-import { Toaster } from '@/components/ui/sonner';
+import { Toaster } from 'sonner';
 import { JotaiProvider } from '@/components/jotai-provider';
 
 //! ThemeProvider import
@@ -40,7 +40,7 @@ export default function RootLayout({
           >
             <ConvexClientProvider>
               <JotaiProvider>
-                <Toaster />
+                <Toaster richColors position="bottom-right" />
                 <Modals />
                 {children}
               </JotaiProvider>

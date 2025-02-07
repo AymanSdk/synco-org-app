@@ -22,6 +22,14 @@ const config = {
         body: ['Open Sans', 'sans-serif'],
       },
       colors: {
+        // Primary colors
+        night: 'hsl(var(--night-hsl))',
+        sky: 'hsl(var(--sky-hsl))',
+        stone: 'hsl(var(--stone-hsl))',
+        snow: 'hsl(var(--snow-hsl))',
+        ink: 'hsl(var(--ink-hsl))',
+        frost: 'hsl(var(--frost-hsl))',
+        // shadcn ui colors
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

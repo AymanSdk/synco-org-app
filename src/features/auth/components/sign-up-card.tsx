@@ -143,7 +143,7 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
 
           <Button
             type="submit"
-            className="w-full bg-sky-900 hover:bg-sky-950"
+            className="bg-sky-900 hover:bg-sky-950 w-full"
             size="lg"
             disabled={pending}
           >
@@ -194,7 +194,7 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
           Already have an account?{' '}
           <button
             onClick={() => setState('SignIn')}
-            className="font-medium text-sky-600 underline hover:text-sky-700"
+            className="text-sky-600 hover:text-sky-700 font-medium underline"
           >
             Sign In
           </button>
