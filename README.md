@@ -28,8 +28,8 @@
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/AymanSdk/synco-org-app
-   cd synco-org-app
+   git clone https://github.com/AymanSdk/syncro-org-app
+   cd syncro-org-app
    ```
 
 2. **Install dependencies:**
