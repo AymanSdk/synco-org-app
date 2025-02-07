@@ -11,9 +11,9 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: '1.5rem',
+      padding: '2rem',
       screens: {
-        '2xl': '1280px',
+        '2xl': '1400px',
       },
     },
     extend: {
@@ -22,14 +22,6 @@ const config = {
         body: ['Open Sans', 'sans-serif'],
       },
       colors: {
-        // Primary colors
-        night: 'hsl(var(--night-hsl))',
-        sky: 'hsl(var(--sky-hsl))',
-        stone: 'hsl(var(--stone-hsl))',
-        snow: 'hsl(var(--snow-hsl))',
-        ink: 'hsl(var(--ink-hsl))',
-        frost: 'hsl(var(--frost-hsl))',
-        // shadcn ui colors
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -38,6 +30,18 @@ const config = {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
+        },
+        sidebar: {
+          DEFAULT: 'hsl(var(--sidebar))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+        },
+        dynamicSidebar: {
+          DEFAULT: 'hsl(var(--dynamic-sidebar))',
+          foreground: 'hsl(var(--dynamic-sidebar-foreground))',
+        },
+        footer: {
+          DEFAULT: 'hsl(var(--footer))',
+          foreground: 'hsl(var(--footer-foreground))',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
