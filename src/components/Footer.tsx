@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="h-[1px] bg-gradient-to-r from-transparent via-gray-600/20 to-transparent" />
       <div className="container mx-auto px-4">
         <p className="text-center text-xs text-gray-300">
-          © {currentYear} Synco Org. All rights reserved
+          © {currentYear} syncro Org. All rights reserved
         </p>
       </div>
     </footer>
