@@ -2,7 +2,7 @@
 
 <!-- Used Tech -->
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=nextjs,react,ts,vercel,convex,nodejs" alt="Tech Stack" />
+  <img src="https://skillicons.dev/icons?i=nextjs,react,ts,vercel,nodejs" alt="Tech Stack" />
 </p>
 
 **Syncro Org** is a lightweight, simplified application for team communication. It allows users to create and manage workspaces, organize channels within them, and easily manage members. With support for OAuth integration via GitHub and Google, Syncro Org provides a smooth and secure user experience.
